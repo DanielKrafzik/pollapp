@@ -5,6 +5,20 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Nokora';
+  src: url('/assets/fonts/Nokora-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Nokora';
+  src: url('/assets/fonts/Nokora-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
 html, body {
     margin: 0;
     padding: 0;
