@@ -1,9 +1,26 @@
 import { Injectable } from '@angular/core';
 import { createClient } from '@supabase/supabase-js';
+import { signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Supabase {
- supabase = createClient('https://kbxmuqupovbproxzpdxz.supabase.co/rest/v1/', 'sb_publishable_O-oDpOY5VP1ox1WDp9-qTQ_IOSpHwsg')
+ supabase = createClient('https://kbxmuqupovbproxzpdxz.supabase.co', 'sb_publishable_O-oDpOY5VP1ox1WDp9-qTQ_IOSpHwsg')
+
+ surveys = signal<{ id: number, created_at: string, name: string, enddate: string, description: string }[]>([]);
+
+ surveyQuestions = signal<{ id: number, created_at: string, question: string, multiple_answers: boolean, A: string, B: string, C: string, D: string, E: string, F: string, A_count: number, B_count: number, C_count: number, D_count: number, E_count: number, F_count: number, survey_id: number }[]>([]);
+
+ async getSurveys() {
+  let { data: surveys, error } = await this.supabase.from('surveys').select('*');
+  if (!surveys) return;
+  this.surveys.set(surveys);
+ }
+
+ async getSurveyQuestions() {
+  let { data: surveyQuestions, error } = await this.supabase.from('survey_questions').select('*');
+  if (!surveyQuestions) return;
+  this.surveyQuestions.set(surveyQuestions);
+ }
 }
