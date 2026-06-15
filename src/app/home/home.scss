@@ -5,6 +5,7 @@ main {
 
 .margin-l {
     margin-left: 111px;
+    margin-right: 111px;
 }
 
 .logo {
@@ -74,6 +75,16 @@ h1 {
     margin: 0;
 }
 
+h2 {
+    font-size: 72px;
+}
+
+h3 {
+    font-size: 32px;
+    font-family: 'Mulish', serif;
+    font-weight: 500;
+}
+
 p, h3 {
     color: white;
 }
@@ -81,4 +92,72 @@ p, h3 {
 p {
     font-size: 24px;
     font-weight: 100;
+}
+
+.ending-soon-surveys {
+    display: flex;
+    flex-direction: column;
+
+    h2 {
+        align-self: center;
+    }
+}
+
+.survey-card-header {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    p {
+        margin-bottom: 0;
+    }
+
+    h4 {
+        margin-top: 0;
+    }
+}
+
+.survey-row {
+    display: flex;
+    gap: 32px;
+}
+
+.survey-card {
+    background-color: rgba(250, 245, 254, 1);
+    font-family: 'Mulish', serif;
+    width: 321px;
+    height: 310px;
+    padding: 18px 40px;
+    border-radius: 0 25% 0 0;
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    p {
+        color: black;
+        font-size: 16px;
+        font-weight: 600;
+        padding: 3px 6px;
+        border-radius: 0 14px 0 0;
+        width: fit-content;
+    }
+
+    h4 {
+        font-size: 26px;
+        font-weight: 700;
+    }
+
+    .p-highlight {
+        background-color: rgba(255, 207, 161, 1);
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(244, 233, 251, 1);
+
+        .p-highlight {
+            background-color: rgba(255, 183, 112, 1);
+        }
+    }
 }
