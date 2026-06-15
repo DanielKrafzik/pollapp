@@ -26,14 +26,17 @@
             </div>
         </section>
 
-        <section>
+        <section class="section-down">
             <div>
                 <button>Active survey</button>
                 <button>Past survey</button>
                 <input placeholder="Sort by categories">
             </div>
-            <div>
-                <div></div>
+            <div class="survey-grid">
+                <div *ngFor="let survey of supabase.surveys()">
+                    <p>{{ survey.category }}</p>
+                    <h4>{{ survey.name }}</h4>
+                </div>
             </div>
         </section>
 

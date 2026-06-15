@@ -1,6 +1,7 @@
 main {
     min-height: 100vh;
     background-color: rgba(53, 39, 58, 1);
+    padding-bottom: 120px;
 }
 
 .margin-l {
@@ -77,6 +78,7 @@ h1 {
 
 h2 {
     font-size: 72px;
+    margin-top: 0;
 }
 
 h3 {
@@ -160,4 +162,18 @@ p {
             background-color: rgba(255, 183, 112, 1);
         }
     }
+}
+
+.section-down {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+.survey-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    width: 100%;
 }
