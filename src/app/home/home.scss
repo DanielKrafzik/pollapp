@@ -171,9 +171,79 @@ p {
     margin-top: 40px;
 }
 
+.filter-div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-btn-div {
+    display: flex;
+    gap: 24px;
+}
+
+.survey-filter-btn {
+    padding: 2px 10px;
+    border-radius: 20px;
+    font-size: 16px;
+    border: none;
+    font-family: 'Nokora', serif;
+    background-color: rgba(255, 233, 212, 1);
+
+    &:hover {
+        background-color: rgba(255, 183, 112, 1);
+        cursor: pointer;
+    }
+
+    &.active {
+        background-color: rgba(255, 183, 112, 1);
+    }
+}
+
 .survey-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 16px;
     width: 100%;
+}
+
+.survey-grid-card {
+    background-color: rgba(217, 217, 217, 0.08);
+    border-radius: 5px 50px 5px 5px;
+    padding: 12px 20px;
+    gap: 24px;
+
+    &:hover {
+        background-color: rgba(217, 217, 217, 0.16);
+        cursor: pointer;
+    }
+}
+
+.card-category {
+    font-family: 'Mulish', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: rgba(255, 207, 161, 1);
+}
+
+.card-title {
+    font-family: 'Mulish', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: white;
+}
+
+.card-enddate {
+    font-family: 'Mulish', serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(34, 18, 39, 1);
+    background-color: rgba(255, 207, 161, 1);
+    padding: 3px 6px;
+    gap: 10px;
+    border-radius: 0 14px 0 0;
+    width: 89px;
+    height: 21px;
+    justify-self: flex-end;
+    text-align: center;
 }

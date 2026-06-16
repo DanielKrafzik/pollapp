@@ -1,18 +1,26 @@
 import { Component } from '@angular/core';
 import { Supabase } from '../supabase';
-import { NgFor } from '@angular/common';
+import { NgFor, NgClass } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-home',
-  imports: [NgFor],
+  imports: [NgFor, NgClass, FormsModule],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
 export class Home {
+  selectedFilter: 'active' | 'past' = 'active';
+  selectedCategory: string = '';
+
   constructor(public supabase: Supabase) {}
 
     async ngOnInit() {
     const surveys = await this.supabase.getSurveys();
+  }
+
+  setFilter(filter: 'active' | 'past') {
+    this.selectedFilter = filter;
   }
 
   getEndsInText(enddate: string): string {
