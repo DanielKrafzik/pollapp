@@ -42,6 +42,7 @@ export class Home {
   selectCategory(category: string) {
     this.selectedCategory = category;
     this.showCategories = false;
+    this.dropdownArrow = '/assets/imgs/arrow_drop_down_down.png';
   }
 
   getEndsInText(enddate: string): string {
