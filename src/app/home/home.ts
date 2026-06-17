@@ -11,7 +11,18 @@ import { FormsModule } from '@angular/forms';
 })
 export class Home {
   selectedFilter: 'active' | 'past' = 'active';
-  selectedCategory: string = '';
+  selectedCategory = '';
+  showCategories = false;
+  dropdownArrow = '/assets/imgs/arrow_drop_down_down.png';
+
+  categories = [
+    'Team Activities',
+    'Health & Wellness',
+    'Gaming & Entertainment',
+    'Education & Learning',
+    'Lifestyle & Preferences',
+    'Technology & Innovation'
+  ];
 
   constructor(public supabase: Supabase) {}
 
@@ -21,6 +32,16 @@ export class Home {
 
   setFilter(filter: 'active' | 'past') {
     this.selectedFilter = filter;
+  }
+
+  toggleCategories() {
+    this.showCategories = !this.showCategories;
+    this.dropdownArrow === '/assets/imgs/arrow_drop_down_down_or.png' ? this.dropdownArrow = '/assets/imgs/arrow_drop_down_up_or.png' : this.dropdownArrow = '/assets/imgs/arrow_drop_down_down_or.png';
+  }
+
+  selectCategory(category: string) {
+    this.selectedCategory = category;
+    this.showCategories = false;
   }
 
   getEndsInText(enddate: string): string {
@@ -37,5 +58,18 @@ export class Home {
     if (diffDays === 1) return 'Ends in 1 day';
 
     return `Ends in ${diffDays} days`;
+  }
+
+  hoverSrc() {
+    if(this.dropdownArrow === '/assets/imgs/arrow_drop_down_down.png')      this.dropdownArrow = '/assets/imgs/arrow_drop_down_down_or.png';
+    else if(this.dropdownArrow === '/assets/imgs/arrow_drop_down_up.png') this.dropdownArrow = '/assets/imgs/arrow_drop_down_up_or.png';
+  }
+
+  leaveHoverSrc() {
+    if (this.dropdownArrow === '/assets/imgs/arrow_drop_down_down_or.png') {
+      this.dropdownArrow = '/assets/imgs/arrow_drop_down_down.png';
+    } else if (this.dropdownArrow === '/assets/imgs/arrow_drop_down_up_or.png') {
+      this.dropdownArrow = '/assets/imgs/arrow_drop_down_up.png';
+    }
   }
 }

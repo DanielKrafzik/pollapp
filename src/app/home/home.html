@@ -32,20 +32,34 @@
                     <button class="survey-filter-btn" [class.active]="selectedFilter === 'active'" (click)="setFilter('active')">Active survey</button>
                     <button class="survey-filter-btn" [class.active]="selectedFilter === 'past'" (click)="setFilter('past')">Past survey</button>
                 </div>
-                <div class="category-select">
-                    <select
-                        id="category"
-                        [(ngModel)]="selectedCategory">
-                        <option value="">Sort by categories</option>
-                        <option value="event">Event</option>
-                        <option value="meeting">Meeting</option>
-                        <option value="vacation">Vacation</option>
-                        <option value="food">Food</option>
-                        <option value="sports">Sports</option>
-                        <option value="other">Other</option>
-                    </select>
+                <div class="category-dropdown">
+                    <button
+                        type="button"
+                        class="dropdown-btn"
+                        (click)="toggleCategories()"
+                        (mouseenter)="hoverSrc()"
+                        (mouseleave)="leaveHoverSrc()">
+
+                        Sort by categories
+                        <img src="{{ dropdownArrow }}" alt="Dropdown" class="dropdown-arrow">
+                    </button>
+
+                    @if (showCategories) {
+                        <div class="dropdown-menu">
+                            @for (category of categories; track category) {
+                                <button
+                                    type="button"
+                                    class="dropdown-item"
+                                    (click)="selectCategory(category)">
+
+                                    <span>{{ category }}</span>
+                                </button>
+                            }
+                        </div>
+                    }
                 </div>
             </div>
+            <span class="category-span">{{ selectedCategory }}</span>
             <div class="survey-grid">
                 <div *ngFor="let survey of supabase.surveys()" class="survey-grid-card">
                     <p class="card-category">{{ survey.category }}</p>
