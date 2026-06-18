@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { Supabase } from '../supabase';
 import { NgFor, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-home',
-  imports: [NgFor, NgClass, FormsModule],
+  imports: [NgFor, NgClass, FormsModule, RouterLink],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
