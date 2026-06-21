@@ -12,17 +12,35 @@ export class Supabase {
 
  surveyQuestions = signal<{ id: number, created_at: string, question: string, multiple_answers: boolean, A: string, B: string, C: string, D: string, E: string, F: string, A_count: number, B_count: number, C_count: number, D_count: number, E_count: number, F_count: number, survey_id: number }[]>([]);
 
- async getSurveys() {
-  let { data: surveys, error } = await this.supabase.from('surveys').select('*');
-  if (!surveys) return;
-  this.surveys.set(surveys);
+ async getSurvey(id: number) {
+  const { data } = await this.supabase
+    .from('surveys')
+    .select('*')
+    .eq('id', id)
+    .single();
 
-  return surveys;
- }
+  return data;
+}
 
- async getSurveyQuestions() {
-  let { data: surveyQuestions, error } = await this.supabase.from('survey_questions').select('*');
+survey: any;
+questions: any[] = [];
+
+async getSurveyQuestions(surveyId: number) {
+  const { data: surveyQuestions, error } = await this.supabase
+    .from('survey_questions')
+    .select('*')
+    .eq('survey_id', surveyId);
+
   if (!surveyQuestions) return;
   this.surveyQuestions.set(surveyQuestions);
- }
+
+  return surveyQuestions;
+}
+
+async loadSurvey(surveyId: number) {
+  this.survey = await this.getSurvey(surveyId);
+
+  this.questions =
+    await this.getSurveyQuestions(surveyId) ?? [];
+}
 }

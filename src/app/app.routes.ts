@@ -4,5 +4,5 @@ import { SurveyView } from './survey-view/survey-view';
 
 export const routes: Routes = [
     { path: '', component: Home },
-    { path: 'survey', component: SurveyView }
+    { path: 'survey/:id', component: SurveyView }
 ];

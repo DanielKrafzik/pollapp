@@ -13,8 +13,10 @@ export class App {
   protected readonly title = signal('pollapp');
   dbService = inject(Supabase);
 
-  ngOnInit() {
-    this.dbService.getSurveys();
-    this.dbService.getSurveyQuestions();
+  async ngOnInit() {
+    await this.dbService.getSurvey(1);
+    await this.dbService.getSurveyQuestions(1);
+
+    console.log(await this.dbService.getSurvey(1));
   }
 }
