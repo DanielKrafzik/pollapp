@@ -28,7 +28,8 @@ export class Home {
   constructor(public supabase: Supabase) {}
 
     async ngOnInit() {
-    const surveys = await this.supabase.getSurvey(1);
+    const survey = await this.supabase.getSurvey(1);
+    const surveys = await this.supabase.getSurveys();
   }
 
   setFilter(filter: 'active' | 'past') {

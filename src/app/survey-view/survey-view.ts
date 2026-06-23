@@ -27,7 +27,7 @@ export class SurveyView {
 
     this.survey =
       await this.supabase.getSurvey(surveyId);
-
+    console.log(this.survey);
     this.questions =
       await this.supabase.getSurveyQuestions(
         surveyId

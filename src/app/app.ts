@@ -14,9 +14,7 @@ export class App {
   dbService = inject(Supabase);
 
   async ngOnInit() {
-    await this.dbService.getSurvey(1);
+    await this.dbService.getSurvey(2);
     await this.dbService.getSurveyQuestions(1);
-
-    console.log(await this.dbService.getSurvey(1));
   }
 }

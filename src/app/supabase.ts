@@ -22,7 +22,17 @@ export class Supabase {
   return data;
 }
 
-survey: any;
+async getSurveys() {
+  const { data, error } = await this.supabase
+    .from('surveys')
+    .select('*');
+
+  if (!data) return;
+
+  this.surveys.set(data);
+}
+
+survey: any[] = [];
 questions: any[] = [];
 
 async getSurveyQuestions(surveyId: number) {
@@ -38,7 +48,7 @@ async getSurveyQuestions(surveyId: number) {
 }
 
 async loadSurvey(surveyId: number) {
-  this.survey = await this.getSurvey(surveyId);
+  this.survey = await this.getSurvey(surveyId) ?? [];
 
   this.questions =
     await this.getSurveyQuestions(surveyId) ?? [];
