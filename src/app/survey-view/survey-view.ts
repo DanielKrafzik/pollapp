@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { Supabase } from '../supabase';
-import { NgFor, NgClass } from '@angular/common';
+import { NgFor, NgClass, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-survey-view',
-  imports: [NgFor, NgClass, FormsModule, RouterLink],
+  imports: [NgFor, NgClass, CommonModule, FormsModule, RouterLink],
   templateUrl: './survey-view.html',
   styleUrl: './survey-view.scss',
 })
@@ -27,10 +27,10 @@ export class SurveyView {
 
     this.survey =
       await this.supabase.getSurvey(surveyId);
-    console.log(this.survey);
     this.questions =
       await this.supabase.getSurveyQuestions(
         surveyId
       ) ?? [];
+      console.log(this.questions);
   }
 }

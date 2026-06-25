@@ -17,10 +17,61 @@
                 </div>
                 <h1>{{ survey.name }}</h1>
                 <p>{{ survey.description }}</p>
+                <div>
+                    <div *ngFor="let question of questions">
+                        <h2>{{ question.question }}</h2>
+                        <div class="answer">{{ question.A }}</div>
+                        <div class="answer">{{ question.B }}</div>
+
+                        <div class="answer" *ngIf="question.C && question.C !== ''">
+                            {{ question.C }}
+                        </div>
+
+                        <div class="answer" *ngIf="question.D && question.D !== ''">
+                            {{ question.D }}
+                        </div>
+
+                        <div class="answer" *ngIf="question.E && question.E !== ''">
+                            {{ question.E }}
+                        </div>
+
+                        <div class="answer" *ngIf="question.F && question.F !== ''">
+                            {{ question.F }}
+                        </div>
+                    </div>
+                </div>
+                <button>Complete survey</button>
             </div>
             
             <div>
+                <h2>Survey results <span>Live</span></h2>
+                <div *ngFor="let question of questions">
+                    <h2>{{ question.question }}</h2>
+                    <div>
+                        {{ question.A_count }}
+                    </div>
 
+                    <div>
+                        {{ question.B_count }}
+                    </div>
+
+                    <div>
+                        {{ question.C_count }}
+                    </div>
+
+                    <div>
+                        {{ question.D_count }}
+                    </div>
+
+                    <div>
+                        {{ question.E_count }}
+                    </div>
+
+                    <div>
+                        {{ question.F_count }}
+                    </div>
+
+                </div>
             </div>
         </section>
     </div>
