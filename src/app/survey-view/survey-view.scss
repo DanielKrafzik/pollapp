@@ -2,3 +2,39 @@ header {
     display: flex;
     justify-content: space-between;
 }
+
+main {
+    padding-top: 39px;
+}
+
+.create-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Nokora', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    background-color: rgba(255, 207, 161, 1);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 160px;
+
+    &:hover {
+        background-color: rgba(255, 183, 112, 1);
+        width: 184px;
+    }
+
+    .add-circle {
+        opacity: 0;
+        width: 0;
+        transition: all 0.2s ease;
+    }
+
+    &:hover .add-circle {
+        opacity: 1;
+        width: 24px;
+    }
+}
