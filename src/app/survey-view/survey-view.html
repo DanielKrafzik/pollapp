@@ -8,16 +8,16 @@
             </button>
         </header>
 
-        <section>
-            <div>
+        <section class="survey-data">
+            <div class="survey-answers">
                 <h2>Published</h2>
-                <div>
+                <div class="survey-info">
                     <p>Ends on {{ survey.enddate }}</p>
                     <p>Category: {{ survey.category }}</p>
                 </div>
                 <h1>{{ survey.name }}</h1>
                 <p>{{ survey.description }}</p>
-                <div>
+                <div class="answer-grid">
                     <div *ngFor="let question of questions">
                         <h2>{{ question.question }}</h2>
                         <div class="answer">{{ question.A }}</div>

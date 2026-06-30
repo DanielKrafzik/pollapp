@@ -5,6 +5,7 @@ header {
 
 main {
     padding-top: 39px;
+    padding-bottom: 39px;
 }
 
 .create-btn {
@@ -37,4 +38,42 @@ main {
         opacity: 1;
         width: 24px;
     }
+}
+
+.survey-data {
+    display: flex;
+    flex-direction: row;
+    font-family: 'Mulish', sans-serif;
+    margin-top: 40px;
+}
+
+.survey-answers {
+    background-color: rgba(142, 112, 153, 0.1);
+    border-top-right-radius: 160px;
+    padding: 40px;
+    width: 700px;
+    gap: 8px;
+
+    h1 {
+        margin: 0;
+        font-family: 'Nerko One', sans-serif;
+        font-weight: 400;
+        font-size: 56px;
+        color: rgba(238, 146, 54, 1);
+    }
+
+    h2 {
+        margin: 0;
+    }
+}
+
+.survey-info {
+    display: flex;
+    justify-content: space-between;
+}
+
+.answer-grid {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 24px;
 }
