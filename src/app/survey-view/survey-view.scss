@@ -77,3 +77,9 @@ main {
     grid-template-columns: auto auto;
     gap: 24px;
 }
+
+.answer {
+    span {
+        font-weight: bold;
+    }
+}

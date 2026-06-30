@@ -20,27 +20,43 @@
                 <div class="answer-grid">
                     <div *ngFor="let question of questions">
                         <h2>{{ question.question }}</h2>
-                        <div class="answer">{{ question.A }}</div>
-                        <div class="answer">{{ question.B }}</div>
+                        <div class="answer">
+                            <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'A', question.multiple_answers, $event)">
+                            <span>A.</span> 
+                            {{ question.A }}
+                        </div>
+                        <div class="answer">
+                            <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'B', question.multiple_answers, $event)">
+                            <span>B.</span> 
+                            {{ question.B }}
+                        </div>
 
                         <div class="answer" *ngIf="question.C && question.C !== ''">
+                            <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'C', question.multiple_answers, $event)">
+                            <span>C.</span> 
                             {{ question.C }}
                         </div>
 
                         <div class="answer" *ngIf="question.D && question.D !== ''">
+                            <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'D', question.multiple_answers, $event)">
+                            <span>D.</span> 
                             {{ question.D }}
                         </div>
 
                         <div class="answer" *ngIf="question.E && question.E !== ''">
+                            <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'E', question.multiple_answers, $event)">
+                            <span>E.</span> 
                             {{ question.E }}
                         </div>
 
                         <div class="answer" *ngIf="question.F && question.F !== ''">
+                            <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'F', question.multiple_answers, $event)">
+                            <span>F.</span> 
                             {{ question.F }}
                         </div>
                     </div>
                 </div>
-                <button>Complete survey</button>
+                <button (click)="completeSurvey()">Complete survey</button>
             </div>
             
             <div>

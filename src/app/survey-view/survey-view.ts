@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class SurveyView {
   survey: any;
   questions: any[] = [];
+  selectedAnswers: { [questionId: number]: string[] } = {};
 
   constructor(
     private route: ActivatedRoute,
@@ -32,5 +33,49 @@ export class SurveyView {
         surveyId
       ) ?? [];
       console.log(this.questions);
+  }
+
+  selectAnswer(
+    questionId: number,
+    answer: string,
+    multipleAnswers: boolean,
+    event: Event
+  ) {
+    const checked = (event.target as HTMLInputElement).checked;
+
+    if (!this.selectedAnswers[questionId]) {
+      this.selectedAnswers[questionId] = [];
+    }
+
+    if (multipleAnswers) {
+      if (checked) {
+        this.selectedAnswers[questionId].push(answer);
+      } else {
+        this.selectedAnswers[questionId] =
+          this.selectedAnswers[questionId].filter(a => a !== answer);
+      }
+    } else {
+      this.selectedAnswers[questionId] = [answer];
+    }
+  }
+
+  async completeSurvey() {
+
+    for (const questionId in this.selectedAnswers) {
+
+      const answers = this.selectedAnswers[questionId];
+
+      for (const answer of answers) {
+
+        await this.supabase.vote(
+          Number(questionId),
+          answer as 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
+        );
+
+      }
+
+    }
+
+    alert('Survey completed!');
   }
 }

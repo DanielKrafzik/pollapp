@@ -53,4 +53,26 @@ async loadSurvey(surveyId: number) {
   this.questions =
     await this.getSurveyQuestions(surveyId) ?? [];
 }
+
+async vote(
+  questionId: number,
+  answer: 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
+) {  
+const { data } = await this.supabase
+  .from('survey_questions')
+  .select('*')
+  .eq('id', questionId)
+  .single();
+
+if (!data) return;
+
+const column = `${answer}_count`;
+const newValue = (data[column] ?? 0) + 1;
+await this.supabase
+  .from('survey_questions')
+  .update({
+      [column]: newValue
+  })
+  .eq('id', questionId);
+}
 }
