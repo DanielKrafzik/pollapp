@@ -15,6 +15,7 @@ export class SurveyView {
   survey: any;
   questions: any[] = [];
   selectedAnswers: { [questionId: number]: string[] } = {};
+  formattedEndDate: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -32,7 +33,7 @@ export class SurveyView {
       await this.supabase.getSurveyQuestions(
         surveyId
       ) ?? [];
-      console.log(this.questions);
+      this.formattedEndDate = this.survey.enddate.split('-')[2] + '.' + this.survey.enddate.split('-')[1] + '.' + this.survey.enddate.split('-')[0];
   }
 
   selectAnswer(
