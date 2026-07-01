@@ -10,7 +10,7 @@
 
         <section class="survey-data">
             <div class="survey-answers">
-                <h2>Published</h2>
+                <h2 class="published">Published</h2>
                 <div class="survey-info">
                     <p>Ends on {{ formattedEndDate }}</p>
                     <p>Category: {{ survey.category }}</p>
@@ -18,8 +18,8 @@
                 <h1>{{ survey.name }}</h1>
                 <p>{{ survey.description }}</p>
                 <div class="answer-grid">
-                    <div *ngFor="let question of questions">
-                        <h2>{{ question.question }}</h2>
+                    <div *ngFor="let question of questions; let i = index">
+                        <h2>{{ i + 1 }}. {{ question.question }}</h2>
                         <div class="answer">
                             <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'A', question.multiple_answers, $event)">
                             <span>A.</span> 
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                 </div>
-                <button (click)="completeSurvey()">Complete survey</button>
+                <button class="complete-btn" (click)="completeSurvey()">Complete survey</button>
             </div>
             
             <div>
