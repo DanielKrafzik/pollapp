@@ -1,6 +1,12 @@
 header {
     display: flex;
     justify-content: space-between;
+
+    img {
+        &:hover {
+            cursor: pointer;
+        }
+    }
 }
 
 main {
@@ -93,8 +99,22 @@ section {
 }
 
 .answer {
+    padding-left: 8px;
+
+    input {
+        margin-right: 16px;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
     span {
         font-weight: bold;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(255, 207, 161, 0.4);
     }
 }
 
@@ -114,5 +134,19 @@ section {
     &:hover {
         background-color: rgba(255, 183, 112, 1);
         cursor: pointer;
+    }
+}
+
+.survey-results {
+    margin-top: 140px;
+}
+
+.results-title {
+    font-family: 'Nerko One', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+
+    span {
+        color: rgba(255, 183, 112, 1);
     }
 }

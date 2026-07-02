@@ -1,7 +1,7 @@
 <main>
     <div class="mw1400 margin-l">
         <header>
-            <img src="/assets/imgs/Logo_dark.png" alt="Logo">
+            <img src="/assets/imgs/Logo_dark.png" alt="Logo" routerLink="/">
             <button class="create-btn">
                 Create Survey
                 <img src="/assets/imgs/add_circle.png" alt="Add Circle" class="add-circle">
@@ -59,32 +59,32 @@
                 <button class="complete-btn" (click)="completeSurvey()">Complete survey</button>
             </div>
             
-            <div>
-                <h2>Survey results <span>Live</span></h2>
-                <div *ngFor="let question of questions">
-                    <h2>{{ question.question }}</h2>
-                    <div>
-                        {{ question.A_count }}
+            <div class="survey-results">
+                <h2 class="results-title">Survey results <span>LIVE</span></h2>
+                <div *ngFor="let question of questions; let i = index">
+                    <h2>{{ i + 1 }}. {{ question.question }}</h2>
+                    <div *ngIf="question.A && question.A !== ''">
+                        A {{ question.A_count }}
                     </div>
 
-                    <div>
-                        {{ question.B_count }}
+                    <div *ngIf="question.B && question.B !== ''">
+                        B {{ question.B_count }}
                     </div>
 
-                    <div>
-                        {{ question.C_count }}
+                    <div *ngIf="question.C && question.C !== ''">
+                        C {{ question.C_count }}
                     </div>
 
-                    <div>
-                        {{ question.D_count }}
+                    <div *ngIf="question.D && question.D !== ''">
+                        D {{ question.D_count }}
                     </div>
 
-                    <div>
-                        {{ question.E_count }}
+                    <div *ngIf="question.E && question.E !== ''">
+                        E {{ question.E_count }}
                     </div>
 
-                    <div>
-                        {{ question.F_count }}
+                    <div *ngIf="question.F && question.F !== ''">
+                        F {{ question.F_count }}
                     </div>
 
                 </div>
