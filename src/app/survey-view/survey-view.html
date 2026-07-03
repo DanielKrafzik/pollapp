@@ -61,30 +61,30 @@
             
             <div class="survey-results">
                 <h2 class="results-title">Survey results <span>LIVE</span></h2>
-                <div *ngFor="let question of questions; let i = index">
+                <div *ngFor="let question of questions; let i = index" class="result-question">
                     <h2>{{ i + 1 }}. {{ question.question }}</h2>
-                    <div *ngIf="question.A && question.A !== ''">
-                        A {{ question.A_count }}
+                    <div *ngIf="question.A && question.A !== ''" class="answer-percentage">
+                        A <div class="full-bar"><div class="percentage-bar" [style.width]="question.A_percentage + '%'"></div></div> {{ question.A_percentage }}%                        
                     </div>
 
-                    <div *ngIf="question.B && question.B !== ''">
-                        B {{ question.B_count }}
+                    <div *ngIf="question.B && question.B !== ''" class="answer-percentage">
+                        B <div class="full-bar"><div class="percentage-bar" [style.width]="question.B_percentage + '%'"></div></div> {{ question.B_percentage }}%
                     </div>
 
-                    <div *ngIf="question.C && question.C !== ''">
-                        C {{ question.C_count }}
+                    <div *ngIf="question.C && question.C !== ''" class="answer-percentage">
+                        C <div class="full-bar"><div class="percentage-bar" [style.width]="question.C_percentage + '%'"></div></div> {{ question.C_percentage }}%
                     </div>
 
-                    <div *ngIf="question.D && question.D !== ''">
-                        D {{ question.D_count }}
+                    <div *ngIf="question.D && question.D !== ''" class="answer-percentage">
+                        D <div class="full-bar"><div class="percentage-bar" [style.width]="question.D_percentage + '%'"></div></div> {{ question.D_percentage }}%
                     </div>
 
-                    <div *ngIf="question.E && question.E !== ''">
-                        E {{ question.E_count }}
+                    <div *ngIf="question.E && question.E !== ''" class="answer-percentage">
+                        E <div class="full-bar"><div class="percentage-bar" [style.width]="question.E_percentage + '%'"></div></div> {{ question.E_percentage }}%
                     </div>
 
-                    <div *ngIf="question.F && question.F !== ''">
-                        F {{ question.F_count }}
+                    <div *ngIf="question.F && question.F !== ''" class="answer-percentage">
+                        F <div class="full-bar"><div class="percentage-bar" [style.width]="question.F_percentage + '%'"></div></div> {{ question.F_percentage }}%
                     </div>
 
                 </div>

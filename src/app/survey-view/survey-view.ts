@@ -34,6 +34,29 @@ export class SurveyView {
         surveyId
       ) ?? [];
       this.formattedEndDate = this.survey.enddate.split('-')[2] + '.' + this.survey.enddate.split('-')[1] + '.' + this.survey.enddate.split('-')[0];
+
+      this.questions = this.questions.map(question => {
+        const total =
+          (question.A_count ?? 0) +
+          (question.B_count ?? 0) +
+          (question.C_count ?? 0) +
+          (question.D_count ?? 0) +
+          (question.E_count ?? 0) +
+          (question.F_count ?? 0);
+
+        return {
+          ...question,
+          totalVotes: total,
+
+          A_percentage: total ? Math.round((question.A_count ?? 0) / total * 100) : 0,
+          B_percentage: total ? Math.round((question.B_count ?? 0) / total * 100) : 0,
+          C_percentage: total ? Math.round((question.C_count ?? 0) / total * 100) : 0,
+          D_percentage: total ? Math.round((question.D_count ?? 0) / total * 100) : 0,
+          E_percentage: total ? Math.round((question.E_count ?? 0) / total * 100) : 0,
+          F_percentage: total ? Math.round((question.F_count ?? 0) / total * 100) : 0
+        };
+      });
+      
   }
 
   selectAnswer(
