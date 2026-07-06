@@ -12,4 +12,21 @@ import { QuestionForm } from '../question-form/question-form';
   templateUrl: './survey-form.html',
   styleUrl: './survey-form.scss',
 })
-export class SurveyForm {}
+export class SurveyForm {
+
+  questionForms = [
+    {
+      id: 1,
+      question: '',
+      multiple_answers: false
+    }
+  ];
+
+  addQuestionForm() {
+    this.questionForms.push({
+      id: this.questionForms.length + 1,
+      question: '',
+      multiple_answers: false
+    });
+  }
+}

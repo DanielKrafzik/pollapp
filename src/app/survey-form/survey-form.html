@@ -38,7 +38,12 @@
             </div>      
             
             <div class="bottom-form">
-                <app-question-form></app-question-form>
+                @for (question of questionForms; track question.id) {
+                    <app-question-form></app-question-form>
+                }
+                <button (click)="addQuestionForm()">
+                    Add  next question <img src="" alt="">
+                </button>
             </div>
         </div>
     </section>
