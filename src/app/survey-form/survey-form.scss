@@ -1,0 +1,9 @@
+.top-form {
+    display: flex;
+    flex-direction: row;
+}
+
+.bottom-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
