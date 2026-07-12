@@ -13,20 +13,20 @@
                 <div class="left-top-form">
                     <div>
                         <h2>Survey name</h2>
-                        <div>
+                        <div class="form-input">
                             <input type="text" placeholder="Enter survey name">
-                            <button>
-                                <img src="/assets/imgs/Bin.png" alt="">
+                            <button class="delete-btn" (mouseenter)="binPath1 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath1 = '/assets/imgs/Bin.png'">
+                                <img src="{{ binPath1 }}" alt="">
                             </button>
                         </div>
                     </div>
                     <div>
                         <div>
                             <h2>Set end date (optional)</h2>
-                            <div>
+                            <div class="form-input">
                                 <input type="date">
-                                <button>
-                                    <img src="/assets/imgs/Bin.png" alt="">
+                                <button class="delete-btn" (mouseenter)="binPath2 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath2 = '/assets/imgs/Bin.png'">
+                                    <img src="{{ binPath2 }}" alt="">
                                 </button>
                             </div>
                         </div>
@@ -34,10 +34,10 @@
                 </div>
                 <div class="right-top-form">
                     <h2>Describing text (optional)</h2>
-                    <div>
+                    <div class="form-input">
                         <textarea ></textarea>
-                        <button>
-                            <img src="/assets/imgs/Bin.png" alt="">
+                        <button class="delete-btn" (mouseenter)="binPath3 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath3 = '/assets/imgs/Bin.png'">
+                            <img src="{{ binPath3 }}" alt="">
                         </button>
                     </div>
                 </div>

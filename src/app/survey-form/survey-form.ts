@@ -14,6 +14,9 @@ import { QuestionForm } from '../question-form/question-form';
 })
 export class SurveyForm {
 
+  binPath1 = '/assets/imgs/Bin.png';
+  binPath2 = '/assets/imgs/Bin.png';
+  binPath3 = '/assets/imgs/Bin.png';
   questionForms = [
     {
       id: 1,

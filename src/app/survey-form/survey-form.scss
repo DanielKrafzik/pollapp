@@ -66,6 +66,7 @@ header {
     gap: 64px;
     background-color: rgba(142, 112, 153, 0.16);
     margin-top: 32px;
+    color: white;
 }
 
 .top-form {
@@ -95,6 +96,24 @@ header {
 
     &:hover {
         background-color: rgba(255, 183, 112, 0.5);
+        cursor: pointer;
+    }
+}
+
+.form-input {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.delete-btn {
+    display: flex;
+    background-color: transparent;
+    border: none;
+    border-radius: 3px;
+    padding: 4px;
+
+    &:hover {
         cursor: pointer;
     }
 }
