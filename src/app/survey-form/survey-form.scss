@@ -117,3 +117,30 @@ header {
         cursor: pointer;
     }
 }
+
+.publish-btn {
+    display: flex;
+    justify-self: flex-end;
+    align-items: center;
+    width: 85px;
+    margin-top: 48px;
+    background-color: rgba(255, 207, 161, 1);
+    border: none;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 12px 16px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+
+    &:hover {
+        cursor: pointer;
+        background-color: rgba(255, 183, 112, 1);
+        width: 120px;
+    }
+
+    img {
+        width: 16px;
+        height: 16px;
+        margin-left: 10px;
+    }
+}
