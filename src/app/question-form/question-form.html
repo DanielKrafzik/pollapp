@@ -12,16 +12,18 @@
         </div>
     </div>
     <div>
-        <div class="answer">
-            <h2>A.</h2>
-            <input type="text">
-            <button><img src="assets/imgs/Bin.png" alt=""></button>
-        </div>
-        <div class="answer">
-            <h2>B.</h2>
-            <input type="text">
-            <button><img src="assets/imgs/Bin.png" alt=""></button>
-        </div>
-        <button class="add-answer">Add answer <img src="assets/imgs/add_circle_white.png" alt=""></button>
+        @for (answer of answers; track $index) {
+            <div class="answer">
+                <h2>{{ answer.letter }}.</h2>
+
+                <input
+                    type="text">
+
+                <button (click)="removeAnswer($index)">
+                    <img src="assets/imgs/Bin.png" alt="">
+                </button>
+            </div>
+        }
+        <button class="add-answer" (click)="addAnswer()" [disabled]="answers.length === 6">Add answer <img src="assets/imgs/add_circle_white.png" alt=""></button>
     </div>
 </div>
