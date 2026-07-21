@@ -13,6 +13,9 @@ import { QuestionForm } from '../question-form/question-form';
   styleUrl: './survey-form.scss',
 })
 export class SurveyForm {
+  showCategories = false;
+  dropdownArrow = '/assets/imgs/arrow_drop_down_down.png';
+  selectedCategory = '';
 
   binPath1 = '/assets/imgs/Bin.png';
   binPath2 = '/assets/imgs/Bin.png';
@@ -24,6 +27,14 @@ export class SurveyForm {
       multiple_answers: false
     }
   ];
+  categories = [
+    'Team Activities',
+    'Health & Wellness',
+    'Gaming & Entertainment',
+    'Education & Learning',
+    'Lifestyle & Preferences',
+    'Technology & Innovation'
+  ];
 
   addQuestionForm() {
     this.questionForms.push({
@@ -31,5 +42,29 @@ export class SurveyForm {
       question: '',
       multiple_answers: false
     });
+  }
+
+  toggleCategories() {
+    this.showCategories = !this.showCategories;
+    this.dropdownArrow === '/assets/imgs/arrow_drop_down_down_or.png' ? this.dropdownArrow = '/assets/imgs/arrow_drop_down_up_or.png' : this.dropdownArrow = '/assets/imgs/arrow_drop_down_down_or.png';
+  }
+
+  hoverSrc() {
+    if(this.dropdownArrow === '/assets/imgs/arrow_drop_down_down.png')      this.dropdownArrow = '/assets/imgs/arrow_drop_down_down_or.png';
+    else if(this.dropdownArrow === '/assets/imgs/arrow_drop_down_up.png') this.dropdownArrow = '/assets/imgs/arrow_drop_down_up_or.png';
+  }
+
+  leaveHoverSrc() {
+    if (this.dropdownArrow === '/assets/imgs/arrow_drop_down_down_or.png') {
+      this.dropdownArrow = '/assets/imgs/arrow_drop_down_down.png';
+    } else if (this.dropdownArrow === '/assets/imgs/arrow_drop_down_up_or.png') {
+      this.dropdownArrow = '/assets/imgs/arrow_drop_down_up.png';
+    }
+  }
+
+  selectCategory(category: string) {
+    this.selectedCategory = category;
+    this.showCategories = false;
+    this.dropdownArrow = '/assets/imgs/arrow_drop_down_down.png';
   }
 }

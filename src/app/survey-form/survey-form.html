@@ -30,6 +30,32 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="category-dropdown">
+                            <button
+                                type="button"
+                                class="dropdown-btn"
+                                (click)="toggleCategories()"
+                                (mouseenter)="hoverSrc()"
+                                (mouseleave)="leaveHoverSrc()">
+
+                                Sort by categories
+                                <img src="{{ dropdownArrow }}" alt="Dropdown" class="dropdown-arrow">
+                            </button>
+
+                            @if (showCategories) {
+                                <div class="dropdown-menu">
+                                    @for (category of categories; track category) {
+                                        <button
+                                            type="button"
+                                            class="dropdown-item"
+                                            (click)="selectCategory(category)">
+
+                                            <span>{{ category }}</span>
+                                        </button>
+                                    }
+                                </div>
+                            }
+                        </div>
                     </div>                  
                 </div>
                 <div class="right-top-form">
