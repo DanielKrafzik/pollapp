@@ -14,17 +14,17 @@
                     <div>
                         <h2 class="data-title">Survey name</h2>
                         <div class="form-input">
-                            <input type="text" placeholder="Enter survey name">
+                            <input type="text" placeholder="Enter survey name" class="name-input">
                             <button class="delete-btn" (mouseenter)="binPath1 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath1 = '/assets/imgs/Bin.png'">
                                 <img src="{{ binPath1 }}" alt="">
                             </button>
                         </div>
                     </div>
-                    <div>
+                    <div class="date-category">
                         <div>
-                            <h2 class="data-title">Set end date (optional)</h2>
+                            <h2 class="data-title">Set end date <span>(optional)</span></h2>
                             <div class="form-input">
-                                <input type="date">
+                                <input type="date" class="date-input">
                                 <button class="delete-btn" (mouseenter)="binPath2 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath2 = '/assets/imgs/Bin.png'">
                                     <img src="{{ binPath2 }}" alt="">
                                 </button>
@@ -38,7 +38,7 @@
                                 (mouseenter)="hoverSrc()"
                                 (mouseleave)="leaveHoverSrc()">
 
-                                Sort by categories
+                                Choose category
                                 <img src="{{ dropdownArrow }}" alt="Dropdown" class="dropdown-arrow">
                             </button>
 
@@ -59,10 +59,10 @@
                     </div>                  
                 </div>
                 <div class="right-top-form">
-                    <h2 class="data-title">Describing text (optional)</h2>
+                    <h2 class="data-title">Describing text <span>(optional)</span></h2>
                     <div class="form-input">
-                        <textarea ></textarea>
-                        <button class="delete-btn" (mouseenter)="binPath3 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath3 = '/assets/imgs/Bin.png'">
+                        <textarea class="description-input"></textarea>
+                        <button class="delete-btn fs" (mouseenter)="binPath3 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath3 = '/assets/imgs/Bin.png'">
                             <img src="{{ binPath3 }}" alt="">
                         </button>
                     </div>

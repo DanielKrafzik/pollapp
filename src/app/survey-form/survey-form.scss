@@ -5,6 +5,7 @@ main {
     border-radius: 5px 100px 5px 5px;
     padding: 40px 54px 40px 54px;
     font-family: 'Mulish', sans-serif;
+    width: 1166px;
 }
 
 h1 {
@@ -24,6 +25,7 @@ header {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    width: 1116px;
 }
 
 .badge {
@@ -71,17 +73,150 @@ header {
     background-color: rgba(142, 112, 153, 0.16);
     margin-top: 32px;
     color: white;
+    width: 1052px;
 }
 
 .data-title {
     font-size: 18px;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 8px; 
+    
+    span {
+        font-weight: 400;
+    }
 }
 
 .top-form {
     display: flex;
+    justify-content: space-between;
     flex-direction: row;
+}
+
+.name-input {
+    width: 403px;
+    height: 23px;
+    border-radius: 5px 20px 5px 5px;
+    padding: 7px 13px;
+    gap: 10px;
+    border: none; 
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+
+    &:focus {
+        outline: none;
+        background-color: rgba(254, 233, 212, 1);
+    }
+}
+
+.date-category {
+    display: flex;
+
+    h2 {
+        margin-top: 8px;
+    }
+}
+
+.date-input {
+    width: 196px;
+    height: 23px;
+    border-radius: 5px 20px 5px 5px;
+    padding: 7px 13px;
+    gap: 10px;
+    border: none;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+
+    &:focus {
+        outline: none;
+        background-color: rgba(254, 233, 212, 1);
+    }
+}
+
+.description-input {
+    width: 392px;
+    height: 96px;
+    border-radius: 5px 20px 5px 5px;
+    padding: 7px 13px;
+    gap: 10px;
+    border: none;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+
+    &:focus {
+        outline: none;
+        background-color: rgba(254, 233, 212, 1);
+    }
+}
+
+.dropdown-btn {
+    width: 206px;
+    padding: 4px 6px 4px 10px;
+    border-radius: 6px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    text-align: left;
+    font-family: 'Mulish', serif;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 8px;
+
+    &:hover {
+        background-color: rgba(217, 217, 217, 0.12);
+    }
+
+    img {
+        width: 15px;
+        height: 8px;
+    }
+}
+
+.category-dropdown {
+    position: relative;
+    width: 206px;
+    height: 32px;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 4px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    overflow: hidden;
+    z-index: 100;
+}
+
+.dropdown-item {
+    width: 100%;
+    padding: 8px 4px;
+    border: none;
+    background: white;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'Mulish', serif;
+    font-size: 14px;
+    font-weight: 400;
+
+    span {
+        border-radius: 6px;
+        padding: 4px;
+
+        &:hover {
+            background-color: rgba(244, 233, 251, 1);
+        }
+    }
 }
 
 .bottom-form {
@@ -144,6 +279,7 @@ header {
     padding: 12px 16px;
     border-radius: 10px;
     transition: all 0.3s ease;
+    margin-right: 50px;
 
     &:hover {
         cursor: pointer;
@@ -156,4 +292,8 @@ header {
         height: 16px;
         margin-left: 10px;
     }
+}
+
+.fs {
+    align-self: flex-start;
 }
