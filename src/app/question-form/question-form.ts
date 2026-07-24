@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {Input} from '@angular/core';
+
+
 
 @Component({
   selector: 'app-question-form',
@@ -8,6 +11,8 @@ import { CommonModule } from '@angular/common';
   styleUrl: './question-form.scss',
 })
 export class QuestionForm {
+  @Input() question: any;
+  @Input() index = 0;
 
   answers = [
     { letter: 'A', text: '' },

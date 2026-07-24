@@ -1,7 +1,10 @@
 <div class="question-form">
     <div class="question-title">
-        <h2>1. Question</h2>
-        <button><img src="assets/imgs/Bin.png" alt=""></button>
+        <h2>{{ index + 1 }}. Question</h2>
+        <button class="delete-btn">
+            <img src="assets/imgs/Bin.png" class="bin-default" alt="">
+            <img src="assets/imgs/Bin_hover.png" class="bin-hover" alt="">
+        </button>
     </div>
     <input type="text" class="question-input">
     <div class="answers-header">
@@ -19,8 +22,8 @@
                 <input
                     type="text">
 
-                <button (click)="removeAnswer($index)">
-                    <img src="assets/imgs/Bin.png" alt="">
+                <button (click)="removeAnswer($index)" class="delete-btn">
+                    <img src="assets/imgs/Bin.png" class="bin-default" alt=""><img src="assets/imgs/Bin_hover.png" class="bin-hover" alt="">
                 </button>
             </div>
         }

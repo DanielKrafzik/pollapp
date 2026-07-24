@@ -77,3 +77,35 @@
         cursor: pointer;
     }
 }
+
+.delete-btn {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+
+    img {
+        position: absolute;
+        inset: 0;
+        width: 24px;
+        height: 24px;
+        margin: auto;
+        transition: opacity .2s ease;
+    }
+
+    .bin-hover {
+        opacity: 0;
+    }
+
+    &:hover {
+        .bin-default {
+            opacity: 0;
+        }
+
+        .bin-hover {
+            opacity: 1;
+        }
+    }
+}
