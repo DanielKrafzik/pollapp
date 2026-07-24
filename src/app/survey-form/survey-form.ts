@@ -24,7 +24,11 @@ export class SurveyForm {
     {
       id: 1,
       question: '',
-      multiple_answers: false
+      multiple_answers: false,
+      answers: [
+        {letter: 'A', text: ""},
+        {letter: 'B', text: ""}
+      ]
     }
   ];
   categories = [
@@ -40,7 +44,11 @@ export class SurveyForm {
     this.questionForms.push({
       id: this.questionForms.length + 1,
       question: '',
-      multiple_answers: false
+      multiple_answers: false,
+      answers: [
+        { letter: 'A', text: '' },
+        { letter: 'B', text: '' }
+      ]
     });
   }
 
@@ -66,5 +74,22 @@ export class SurveyForm {
     this.selectedCategory = category;
     this.showCategories = false;
     this.dropdownArrow = '/assets/imgs/arrow_drop_down_down.png';
+  }
+
+  removeQuestion(index: number) {
+    if (index === 0) {
+      this.questionForms[0].question = '';
+      this.questionForms[0].multiple_answers = false;
+      this.questionForms[0].answers = [
+        { letter: 'A', text: '' },
+        { letter: 'B', text: '' }
+      ];
+    } else {
+      this.questionForms.splice(index, 1);
+
+      this.questionForms.forEach((question, i) => {
+        question.id = i + 1;
+      });
+    }
   }
 }

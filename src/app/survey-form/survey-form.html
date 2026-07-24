@@ -71,7 +71,7 @@
             
             <div class="bottom-form">
                 @for (question of questionForms; track question.id) {
-                    <app-question-form [question]="question" [index]="$index"></app-question-form>
+                    <app-question-form [question]="question" [index]="$index" (deleteQuestion)="removeQuestion($event)"></app-question-form>
                 }
                 <button (click)="addQuestionForm()" class="add-btn">
                     Add  next question <img src="/assets/imgs/add_circle_white.png" alt="">
