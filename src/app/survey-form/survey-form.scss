@@ -222,6 +222,7 @@ header {
 .bottom-form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 91px;
 }
 
 .add-btn {
@@ -229,9 +230,9 @@ header {
     align-items: center;
     justify-content: space-between;
     text-align: center;
+    align-self: flex-start;
     height: 40px;
     width: 200px;
-    align-self: flex-end;
     border-radius: 10px;
     color: white;
     background-color: rgba(255, 183, 112, 0.3);

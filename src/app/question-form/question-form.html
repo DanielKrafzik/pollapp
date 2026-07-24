@@ -8,13 +8,13 @@
     </div>
     <input type="text" class="question-input">
     <div class="answers-header">
-        <h2>Answers</h2>
+        <h2 class="answers-title">Answers</h2>
         <div class="answers-checkbox">
-            <input type="checkbox">
+            <input type="checkbox" class="checkbox">
             <p>Allow multiple answers</p>
         </div>
     </div>
-    <div>
+    <div class="answer-div">
         @for (answer of answers; track $index) {
             <div class="answer">
                 <h2>{{ answer.letter }}.</h2>
