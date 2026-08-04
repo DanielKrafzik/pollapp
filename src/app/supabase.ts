@@ -13,66 +13,116 @@ export class Supabase {
  surveyQuestions = signal<{ id: number, created_at: string, question: string, multiple_answers: boolean, A: string, B: string, C: string, D: string, E: string, F: string, A_count: number, B_count: number, C_count: number, D_count: number, E_count: number, F_count: number, survey_id: number }[]>([]);
 
  async getSurvey(id: number) {
+    const { data } = await this.supabase
+      .from('surveys')
+      .select('*')
+      .eq('id', id)
+      .single();
+
+    return data;
+  }
+
+  async getSurveys() {
+    const { data, error } = await this.supabase
+      .from('surveys')
+      .select('*');
+
+    if (!data) return;
+
+    this.surveys.set(data);
+  }
+
+  survey: any[] = [];
+  questions: any[] = [];
+
+  async getSurveyQuestions(surveyId: number) {
+    const { data: surveyQuestions, error } = await this.supabase
+      .from('survey_questions')
+      .select('*')
+      .eq('survey_id', surveyId);
+
+    if (!surveyQuestions) return;
+    this.surveyQuestions.set(surveyQuestions);
+
+    return surveyQuestions;
+  }
+
+  async loadSurvey(surveyId: number) {
+    this.survey = await this.getSurvey(surveyId) ?? [];
+
+    this.questions =
+      await this.getSurveyQuestions(surveyId) ?? [];
+  }
+
+  async vote(
+    questionId: number,
+    answer: 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
+  ) {  
   const { data } = await this.supabase
-    .from('surveys')
+    .from('survey_questions')
     .select('*')
-    .eq('id', id)
+    .eq('id', questionId)
     .single();
-
-  return data;
-}
-
-async getSurveys() {
-  const { data, error } = await this.supabase
-    .from('surveys')
-    .select('*');
 
   if (!data) return;
 
-  this.surveys.set(data);
-}
-
-survey: any[] = [];
-questions: any[] = [];
-
-async getSurveyQuestions(surveyId: number) {
-  const { data: surveyQuestions, error } = await this.supabase
+  const column = `${answer}_count`;
+  const newValue = (data[column] ?? 0) + 1;
+  await this.supabase
     .from('survey_questions')
-    .select('*')
-    .eq('survey_id', surveyId);
+    .update({
+        [column]: newValue
+    })
+    .eq('id', questionId);
+  }
 
-  if (!surveyQuestions) return;
-  this.surveyQuestions.set(surveyQuestions);
+  async createSurvey(survey: {
+    name: string;
+    description: string;
+    category: string;
+    enddate: string;
+  }) {
+    const { data, error } = await this.supabase
+      .from('surveys')
+      .insert(survey)
+      .select()
+      .single();
 
-  return surveyQuestions;
-}
+    if (error) {
+      console.error(error);
+      return null;
+    }
 
-async loadSurvey(surveyId: number) {
-  this.survey = await this.getSurvey(surveyId) ?? [];
+    return data;
+  }
 
-  this.questions =
-    await this.getSurveyQuestions(surveyId) ?? [];
-}
+  async createQuestions(surveyId: number, questions: any[]) {
+    const rows = questions.map(question => ({
+      survey_id: surveyId,
+      question: question.question,
+      multiple_answers: question.multiple_answers,
 
-async vote(
-  questionId: number,
-  answer: 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
-) {  
-const { data } = await this.supabase
-  .from('survey_questions')
-  .select('*')
-  .eq('id', questionId)
-  .single();
+      A: question.answers[0]?.text ?? '',
+      B: question.answers[1]?.text ?? '',
+      C: question.answers[2]?.text ?? '',
+      D: question.answers[3]?.text ?? '',
+      E: question.answers[4]?.text ?? '',
+      F: question.answers[5]?.text ?? '',
 
-if (!data) return;
+      A_count: 0,
+      B_count: 0,
+      C_count: 0,
+      D_count: 0,
+      E_count: 0,
+      F_count: 0
+    }));
 
-const column = `${answer}_count`;
-const newValue = (data[column] ?? 0) + 1;
-await this.supabase
-  .from('survey_questions')
-  .update({
-      [column]: newValue
-  })
-  .eq('id', questionId);
-}
+    const { error } = await this.supabase
+      .from('survey_questions')
+      .insert(rows);
+
+    if (error) {
+      console.error(error);
+    }
+  }
 }

@@ -40,6 +40,12 @@ export class SurveyForm {
     'Technology & Innovation'
   ];
 
+  name = '';
+  description = '';
+  enddate = '';
+
+  constructor(public supabase: Supabase, private route: ActivatedRoute) {}
+
   addQuestionForm() {
     this.questionForms.push({
       id: this.questionForms.length + 1,
@@ -91,5 +97,24 @@ export class SurveyForm {
         question.id = i + 1;
       });
     }
+  }
+
+  async publishSurvey() {
+
+    const createdSurvey = await this.supabase.createSurvey({
+      name: this.name,
+      description: this.description,
+      category: this.selectedCategory,
+      enddate: this.enddate
+    });
+
+    if (!createdSurvey) return;
+
+    await this.supabase.createQuestions(
+      createdSurvey.id,
+      this.questionForms
+    );
+
+    console.log('Survey erfolgreich gespeichert!');
   }
 }

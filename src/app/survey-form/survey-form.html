@@ -14,7 +14,7 @@
                     <div>
                         <h2 class="data-title">Survey name</h2>
                         <div class="form-input">
-                            <input type="text" placeholder="Enter survey name" class="name-input">
+                            <input type="text" placeholder="Enter survey name" class="name-input" [(ngModel)]="name">
                             <button class="delete-btn" (mouseenter)="binPath1 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath1 = '/assets/imgs/Bin.png'">
                                 <img src="{{ binPath1 }}" alt="">
                             </button>
@@ -24,7 +24,7 @@
                         <div>
                             <h2 class="data-title">Set end date <span>(optional)</span></h2>
                             <div class="form-input">
-                                <input type="date" class="date-input">
+                                <input type="date" class="date-input" [(ngModel)]="enddate">
                                 <button class="delete-btn" (mouseenter)="binPath2 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath2 = '/assets/imgs/Bin.png'">
                                     <img src="{{ binPath2 }}" alt="">
                                 </button>
@@ -61,7 +61,7 @@
                 <div class="right-top-form">
                     <h2 class="data-title">Describing text <span>(optional)</span></h2>
                     <div class="form-input">
-                        <textarea class="description-input"></textarea>
+                        <textarea class="description-input" [(ngModel)]="description"></textarea>
                         <button class="delete-btn fs" (mouseenter)="binPath3 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath3 = '/assets/imgs/Bin.png'">
                             <img src="{{ binPath3 }}" alt="">
                         </button>
