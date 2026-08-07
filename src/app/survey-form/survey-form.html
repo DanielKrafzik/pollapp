@@ -80,7 +80,7 @@
             </div>
         </div>
     </section>
-    <button class="publish-btn" (click)="publishSurvey()">
+    <button class="publish-btn" (click)="publishSurvey()" [disabled]="!canPublish()">
         Publish
         <img src="/assets/imgs/check.png" alt="">
     </button>

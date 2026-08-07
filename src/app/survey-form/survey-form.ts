@@ -102,6 +102,11 @@ export class SurveyForm {
 
   async publishSurvey() {
 
+    if (!this.canPublish()) {
+      alert('Please fill in all required fields.');
+      return;
+    }
+
     const createdSurvey = await this.supabase.createSurvey({
       name: this.name,
       description: this.description,
@@ -121,5 +126,28 @@ export class SurveyForm {
 
   clearField(field: 'name' | 'description' | 'enddate') {
     this[field] = '';
+  }
+
+  canPublish(): boolean {
+    if (!this.name.trim() || this.name.length < 3) return false;
+    if (!this.selectedCategory.trim()) return false;
+
+    for (const question of this.questionForms) {
+      if (!question.question.trim() || question.question.length < 3) {
+        return false;
+      }
+
+      if (question.answers.length < 2) {
+        return false;
+      }
+
+      for (const answer of question.answers) {
+        if (!answer.text.trim()) {
+          return false;
+        }
+      }
+    }
+
+    return true;
   }
 }
