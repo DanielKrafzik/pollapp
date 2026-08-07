@@ -219,6 +219,15 @@ header {
     }
 }
 
+.selected-category {
+    margin-top: 8px;
+    margin-left: 16px;
+    font-family: 'Mulish', serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: rgba(255, 183, 112, 1);
+}
+
 .bottom-form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
