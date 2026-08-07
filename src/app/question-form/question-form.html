@@ -6,7 +6,7 @@
             <img src="assets/imgs/Bin_hover.png" class="bin-hover" alt="">
         </button>
     </div>
-    <input type="text" class="question-input" [(ngModel)]="question.question">
+    <input type="text" class="question-input" [(ngModel)]="question.question" minLength="3" maxlength="40" >
     <div class="answers-header">
         <h2 class="answers-title">Answers</h2>
         <div class="answers-checkbox">
@@ -20,8 +20,7 @@
                 <h2>{{ answer.letter }}.</h2>
 
                 <input
-                    type="text" [(ngModel)]="answer.text">
-                    
+                    type="text" [(ngModel)]="answer.text" minLength="1" maxlength="30">
                 <button (click)="removeAnswer($index)" class="delete-btn">
                     <img src="assets/imgs/Bin.png" class="bin-default" alt=""><img src="assets/imgs/Bin_hover.png" class="bin-hover" alt="">
                 </button>

@@ -43,6 +43,7 @@ export class SurveyForm {
   name = '';
   description = '';
   enddate = '';
+  minDate = new Date().toISOString().split('T')[0];
 
   constructor(public supabase: Supabase, private route: ActivatedRoute) {}
 
@@ -116,5 +117,9 @@ export class SurveyForm {
     );
 
     console.log('Survey erfolgreich gespeichert!');
+  }
+
+  clearField(field: 'name' | 'description' | 'enddate') {
+    this[field] = '';
   }
 }

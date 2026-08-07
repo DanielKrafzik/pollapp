@@ -14,8 +14,8 @@
                     <div>
                         <h2 class="data-title">Survey name</h2>
                         <div class="form-input">
-                            <input type="text" placeholder="Enter survey name" class="name-input" [(ngModel)]="name">
-                            <button class="delete-btn" (mouseenter)="binPath1 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath1 = '/assets/imgs/Bin.png'">
+                            <input type="text" placeholder="Enter survey name" class="name-input" [(ngModel)]="name" maxlength="50" minlength="3">
+                            <button class="delete-btn" (click)="clearField('name')" (mouseenter)="binPath1 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath1 = '/assets/imgs/Bin.png'">
                                 <img src="{{ binPath1 }}" alt="">
                             </button>
                         </div>
@@ -24,8 +24,8 @@
                         <div>
                             <h2 class="data-title">Set end date <span>(optional)</span></h2>
                             <div class="form-input">
-                                <input type="date" class="date-input" [(ngModel)]="enddate">
-                                <button class="delete-btn" (mouseenter)="binPath2 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath2 = '/assets/imgs/Bin.png'">
+                                <input type="date" class="date-input" [(ngModel)]="enddate" placeholder="" min="{{ minDate }}">
+                                <button class="delete-btn" (click)="clearField('enddate')" (mouseenter)="binPath2 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath2 = '/assets/imgs/Bin.png'">
                                     <img src="{{ binPath2 }}" alt="">
                                 </button>
                             </div>
@@ -62,8 +62,8 @@
                 <div class="right-top-form">
                     <h2 class="data-title">Describing text <span>(optional)</span></h2>
                     <div class="form-input">
-                        <textarea class="description-input" [(ngModel)]="description"></textarea>
-                        <button class="delete-btn fs" (mouseenter)="binPath3 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath3 = '/assets/imgs/Bin.png'">
+                        <textarea class="description-input" [(ngModel)]="description" placeholder="Enter description" maxlength="200" minlength="10"></textarea>
+                        <button class="delete-btn fs" (click)="clearField('description')" (mouseenter)="binPath3 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath3 = '/assets/imgs/Bin.png'">
                             <img src="{{ binPath3 }}" alt="">
                         </button>
                     </div>
