@@ -4,6 +4,7 @@ import { NgFor, NgClass, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { signal } from '@angular/core';
 
 @Component({
   selector: 'app-survey-view',
@@ -12,8 +13,8 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './survey-view.scss',
 })
 export class SurveyView {
-  survey: any;
-  questions: any[] = [];
+  survey = signal<any>(null);
+  questions = signal<any[]>([]);
   selectedAnswers: { [questionId: number]: string[] } = {};
   formattedEndDate: string = '';
 
@@ -27,15 +28,23 @@ export class SurveyView {
       this.route.snapshot.paramMap.get('id')
     );
 
-    this.survey =
-      await this.supabase.getSurvey(surveyId);
-    this.questions =
-      await this.supabase.getSurveyQuestions(
-        surveyId
-      ) ?? [];
-      this.formattedEndDate = this.survey.enddate.split('-')[2] + '.' + this.survey.enddate.split('-')[1] + '.' + this.survey.enddate.split('-')[0];
+    console.log('Survey ID:', surveyId);
 
-      this.questions = this.questions.map(question => {
+    const surveyData =
+    await this.supabase.getSurvey(surveyId);
+
+      console.log('Survey:', surveyData);
+      this.survey.set(surveyData);
+    const questionData =
+      await this.supabase.getSurveyQuestions(surveyId) ?? [];
+      if (surveyData?.enddate) {
+        this.formattedEndDate =
+          surveyData.enddate.split('-')[2] + '.' +
+          surveyData.enddate.split('-')[1] + '.' +
+          surveyData.enddate.split('-')[0];
+      }
+
+      const mappedQuestions = questionData.map(question => {
         const total =
           (question.A_count ?? 0) +
           (question.B_count ?? 0) +
@@ -48,15 +57,32 @@ export class SurveyView {
           ...question,
           totalVotes: total,
 
-          A_percentage: total ? Math.round((question.A_count ?? 0) / total * 100) : 0,
-          B_percentage: total ? Math.round((question.B_count ?? 0) / total * 100) : 0,
-          C_percentage: total ? Math.round((question.C_count ?? 0) / total * 100) : 0,
-          D_percentage: total ? Math.round((question.D_count ?? 0) / total * 100) : 0,
-          E_percentage: total ? Math.round((question.E_count ?? 0) / total * 100) : 0,
-          F_percentage: total ? Math.round((question.F_count ?? 0) / total * 100) : 0
+          A_percentage: total
+            ? Math.round(((question.A_count ?? 0) / total) * 100)
+            : 0,
+
+          B_percentage: total
+            ? Math.round(((question.B_count ?? 0) / total) * 100)
+            : 0,
+
+          C_percentage: total
+            ? Math.round(((question.C_count ?? 0) / total) * 100)
+            : 0,
+
+          D_percentage: total
+            ? Math.round(((question.D_count ?? 0) / total) * 100)
+            : 0,
+
+          E_percentage: total
+            ? Math.round(((question.E_count ?? 0) / total) * 100)
+            : 0,
+
+          F_percentage: total
+            ? Math.round(((question.F_count ?? 0) / total) * 100)
+            : 0
         };
       });
-      
+      this.questions.set(mappedQuestions);
   }
 
   selectAnswer(

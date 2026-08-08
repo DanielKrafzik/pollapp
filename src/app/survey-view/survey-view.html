@@ -9,16 +9,17 @@
         </header>
 
         <section class="survey-data">
+            @if (survey(); as currentSurvey) {
             <div class="survey-answers">
                 <h2 class="published">Published</h2>
                 <div class="survey-info">
                     <p>Ends on {{ formattedEndDate }}</p>
-                    <p>Category: {{ survey.category }}</p>
+                    <p>Category: {{ currentSurvey.category }}</p>
                 </div>
-                <h1>{{ survey.name }}</h1>
-                <p>{{ survey.description }}</p>
+                <h1>{{ currentSurvey.name }}</h1>
+                <p>{{ currentSurvey.description }}</p>
                 <div class="answer-grid">
-                    <div *ngFor="let question of questions; let i = index">
+                    <div *ngFor="let question of questions(); let i = index">
                         <h2>{{ i + 1 }}. {{ question.question }}</h2>
                         <div class="answer">
                             <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'A', question.multiple_answers, $event)">
@@ -58,10 +59,12 @@
                 </div>
                 <button class="complete-btn" (click)="completeSurvey()">Complete survey</button>
             </div>
+        }
+            
             
             <div class="survey-results">
                 <h2 class="results-title">Survey results <span>LIVE</span></h2>
-                <div *ngFor="let question of questions; let i = index" class="result-question">
+                <div *ngFor="let question of questions(); let i = index" class="result-question">
                     <h2>{{ i + 1 }}. {{ question.question }}</h2>
                     <div *ngIf="question.A && question.A !== ''" class="answer-percentage">
                         A <div class="full-bar"><div class="percentage-bar" [style.width]="question.A_percentage + '%'"></div></div> {{ question.A_percentage }}%                        

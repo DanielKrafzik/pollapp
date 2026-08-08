@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionForm } from '../question-form/question-form';
+import { PublishedOverlay } from '../published-overlay/published-overlay';
 
 @Component({
   selector: 'app-survey-form',
-  imports: [CommonModule, FormsModule, RouterLink, QuestionForm],
+  imports: [CommonModule, FormsModule, RouterLink, QuestionForm, PublishedOverlay],
   templateUrl: './survey-form.html',
   styleUrl: './survey-form.scss',
 })
