@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
 })
 export class Home {
   selectedFilter: 'active' | 'past' = 'active';
-  selectedCategory = '';
+  selectedCategory = 'All Surveys';
   showCategories = false;
   dropdownArrow = '/assets/imgs/arrow_drop_down_down.png';
 
@@ -74,6 +74,35 @@ export class Home {
     } else if (this.dropdownArrow === '/assets/imgs/arrow_drop_down_up_or.png') {
       this.dropdownArrow = '/assets/imgs/arrow_drop_down_up.png';
     }
+  }
+
+  getFilteredSurveys() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    return this.supabase.surveys()
+      .filter(survey => {
+
+        let matchesStatus = false;
+
+        if (!survey.enddate) {
+          matchesStatus = this.selectedFilter === 'active';
+        } else {
+          const endDate = new Date(survey.enddate);
+
+          if (this.selectedFilter === 'active') {
+            matchesStatus = endDate >= today;
+          } else {
+            matchesStatus = endDate < today;
+          }
+        }
+
+        const matchesCategory =
+          this.selectedCategory === 'All Surveys' ||
+          survey.category === this.selectedCategory;
+
+        return matchesStatus && matchesCategory;
+      });
   }
 
   getEndingSoonSurveys() {

@@ -54,6 +54,12 @@
 
                     @if (showCategories) {
                         <div class="dropdown-menu">
+                            <button
+                                type="button"
+                                class="dropdown-item"
+                                (click)="selectCategory('All Surveys')">
+                                <span>All Surveys</span>
+                            </button>
                             @for (category of categories; track category) {
                                 <button
                                     type="button"
@@ -69,11 +75,13 @@
             </div>
             <span class="category-span">{{ selectedCategory }}</span>
             <div class="survey-grid">
-                <div *ngFor="let survey of supabase.surveys()" class="survey-grid-card" routerLink="/survey">
-                    <p class="card-category">{{ survey.category }}</p>
-                    <h4 class="card-title">{{ survey.name }}</h4>
-                    <p class="card-enddate">{{ getEndsInText(survey.enddate) }}</p>
-                </div>
+                @for (survey of getFilteredSurveys(); track survey.id) {
+                    <div class="survey-grid-card" [routerLink]="['/survey', survey.id]">
+                        <p class="card-category">{{ survey.category }}</p>
+                        <h4 class="card-title">{{ survey.name }}</h4>
+                        <p class="card-enddate">{{ getEndsInText(survey.enddate) }}</p>
+                    </div>
+                }
             </div>
         </section>
 
