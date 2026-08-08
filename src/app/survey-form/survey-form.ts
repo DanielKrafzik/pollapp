@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Supabase } from '../supabase';
 import { NgFor, NgClass, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { QuestionForm } from '../question-form/question-form';
 import { PublishedOverlay } from '../published-overlay/published-overlay';
@@ -45,8 +45,10 @@ export class SurveyForm {
   description = '';
   enddate = '';
   minDate = new Date().toISOString().split('T')[0];
+  createdSurveyId: number | null = null;
+  showPublishedOverlay = signal(false);
 
-  constructor(public supabase: Supabase, private route: ActivatedRoute) {}
+  constructor(public supabase: Supabase, private route: ActivatedRoute, private router: Router) {}
 
   addQuestionForm() {
     this.questionForms.push({
@@ -104,7 +106,7 @@ export class SurveyForm {
   async publishSurvey() {
 
     if (!this.canPublish()) {
-      alert('Please fill in all required fields.');
+      alert('Please fill in all required fields');
       return;
     }
 
@@ -122,7 +124,10 @@ export class SurveyForm {
       this.questionForms
     );
 
-    console.log('Survey erfolgreich gespeichert!');
+    this.createdSurveyId = createdSurvey.id;
+    this.showPublishedOverlay.set(true);
+    document.body.style.overflow = 'hidden';
+    console.log('Survey erfolgreich gespeichert!', this.showPublishedOverlay);
   }
 
   clearField(field: 'name' | 'description' | 'enddate') {
@@ -150,5 +155,12 @@ export class SurveyForm {
     }
 
     return true;
+  }
+
+  goToSurvey() {
+    document.body.style.overflow = '';
+    if (this.createdSurveyId === null) return;
+
+    this.router.navigate(['/survey', this.createdSurveyId]);
   }
 }

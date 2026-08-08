@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-published-overlay',
@@ -6,4 +6,10 @@ import { Component } from '@angular/core';
   templateUrl: './published-overlay.html',
   styleUrl: './published-overlay.scss',
 })
-export class PublishedOverlay {}
+export class PublishedOverlay {
+  @Output() closeOverlay = new EventEmitter<void>();
+
+  close() {
+    this.closeOverlay.emit();
+  }
+}
