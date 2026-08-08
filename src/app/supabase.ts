@@ -80,7 +80,7 @@ export class Supabase {
     name: string;
     description: string;
     category: string;
-    enddate: string;
+    enddate: string | null;
   }) {
     const { data, error } = await this.supabase
       .from('surveys')

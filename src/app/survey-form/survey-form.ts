@@ -111,7 +111,7 @@ export class SurveyForm {
       name: this.name,
       description: this.description,
       category: this.selectedCategory,
-      enddate: this.enddate
+      enddate: this.enddate || null
     });
 
     if (!createdSurvey) return;
