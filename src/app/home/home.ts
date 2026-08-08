@@ -75,4 +75,18 @@ export class Home {
       this.dropdownArrow = '/assets/imgs/arrow_drop_down_up.png';
     }
   }
+
+  getEndingSoonSurveys() {
+    const today = new Date();
+
+    return [...this.supabase.surveys()]
+      .filter(survey =>
+        survey.enddate &&
+        new Date(survey.enddate) >= today
+      )
+      .sort((a, b) =>
+        new Date(a.enddate).getTime() - new Date(b.enddate).getTime()
+      )
+      .slice(0, 3);
+  }
 }

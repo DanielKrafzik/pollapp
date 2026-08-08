@@ -15,13 +15,21 @@
                 <h2>Your surveys</h2>
                 <h3>Ending soon surveys</h3>
                 <div class="survey-row">
-                    <div *ngFor="let survey of supabase.surveys()" class="survey-card"  [routerLink]="['/survey', survey.id]">
-                        <div class="survey-card-header">
-                            <p>{{ survey.category }}</p>
-                            <h4>{{ survey.name }}</h4>
+                    @for (survey of getEndingSoonSurveys(); track survey.id) {
+                        <div
+                            class="survey-card"
+                            [routerLink]="['/survey', survey.id]">
+
+                            <div class="survey-card-header">
+                                <p>{{ survey.category }}</p>
+                                <h4>{{ survey.name }}</h4>
+                            </div>
+
+                            <p class="p-highlight">
+                                {{ getEndsInText(survey.enddate) }}
+                            </p>
                         </div>
-                        <p class="p-highlight">{{ getEndsInText(survey.enddate) }}</p>
-                    </div>
+                    }
                 </div>
             </div>
         </section>
