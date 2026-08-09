@@ -309,21 +309,158 @@ header {
     align-self: flex-start;
 }
 
+.mobile {
+    display: none;
+}
+
 @media (max-width: 1290px) {
+    .logo {
+        margin-top: 54px;
+        padding-left: 16px;
+    }
     main {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    header {
         width: 100%;
     }
 
+    .cancel-btn {
+        align-self: flex-start;
+
+        p {
+            display: none;
+        }
+    }
     section {
         width: 100%;
     }
 
     .form {
         width: 100%;
+        box-sizing: border-box;
+        gap: 48px;
     }
 
     .top-form {
         flex-direction: column;
         gap: 8px;
+    }
+
+    .name-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form-input {
+        button {
+            display: none;
+        }
+    }
+
+    .date-category {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .date-div {
+        order: 2;
+        width: 429px;
+    }
+
+    .date-input {
+        width: 403px;
+    }
+
+    .category-dropdown {
+        order: 1;
+        width: 429px;
+        height: 55px;
+
+        button {
+            padding-left: 0;
+        }
+    }
+
+    .right-top-form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .description-input {
+        width: 403px;
+    }
+
+    .bottom-form {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+
+    app-question-form {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .add-btn {
+        justify-self: center;
+    }
+
+    .publish-btn {
+        justify-self: center;
+        width: 120px;
+        margin-right: 0;
+    }
+
+    .mobile {
+        display: block;
+    }
+
+    .mobile-div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 429px;
+    }
+}
+
+@media (max-width: 620px) {
+    h1 {
+        font-size: 56px;
+        font-weight: 400;
+        width: 294px;
+    }
+
+    main {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    header {
+        button {
+            margin-right: 16px;
+        }
+    }
+
+    .form {
+        padding: 40px 10px;
+    }
+
+    .mobile-div,
+    .form-input,
+    .name-input,
+    .category-dropdown,
+    .date-div,
+    .date-input,
+    .description-input,
+    app-question-form {
+        width: 100%;
     }
 }

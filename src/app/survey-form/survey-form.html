@@ -1,3 +1,4 @@
+<img class="mobile logo" src="/assets/imgs/Logo_dark.png" alt="Logo" routerLink="/">
 <main class="mw1400">
     <section>
         <header>
@@ -5,14 +6,22 @@
                 <p class="badge">Draft</p>
                 <h1>Create new survey</h1>
             </div>
-            <button routerLink="/" class="cancel-btn">Cancel <img src="/assets/imgs/close.png" alt=""></button>
+            <button routerLink="/" class="cancel-btn">
+                <p>Cancel </p>
+                <img src="/assets/imgs/close.png" alt="">
+            </button>
         </header>
 
         <div class="form">
             <div class="top-form">
                 <div class="left-top-form">
-                    <div>
-                        <h2 class="data-title">Survey name</h2>
+                    <div class="name-div">
+                        <div class="mobile-div">
+                            <h2 class="data-title">Survey name</h2>
+                            <button class="delete-btn mobile" (click)="clearField('name')" (mouseenter)="binPath1 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath1 = '/assets/imgs/Bin.png'">
+                                <img src="{{ binPath1 }}" alt="">
+                            </button>
+                        </div>                        
                         <div class="form-input">
                             <input type="text" placeholder="Enter survey name" class="name-input" [(ngModel)]="name" maxlength="50" minlength="3">
                             <button class="delete-btn" (click)="clearField('name')" (mouseenter)="binPath1 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath1 = '/assets/imgs/Bin.png'">
@@ -21,8 +30,13 @@
                         </div>
                     </div>
                     <div class="date-category">
-                        <div>
-                            <h2 class="data-title">Set end date <span>(optional)</span></h2>
+                        <div class="date-div">
+                            <div class="mobile-div">
+                                <h2 class="data-title">Set end date <span>(optional)</span></h2>
+                                <button class="delete-btn mobile" (click)="clearField('enddate')" (mouseenter)="binPath2 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath2 = '/assets/imgs/Bin.png'">
+                                    <img src="{{ binPath2 }}" alt="">
+                                </button>
+                            </div>                            
                             <div class="form-input">
                                 <input type="date" class="date-input" [(ngModel)]="enddate" placeholder="" min="{{ minDate }}">
                                 <button class="delete-btn" (click)="clearField('enddate')" (mouseenter)="binPath2 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath2 = '/assets/imgs/Bin.png'">
@@ -49,7 +63,12 @@
                     </div>                  
                 </div>
                 <div class="right-top-form">
-                    <h2 class="data-title">Describing text <span>(optional)</span></h2>
+                    <div class="mobile-div">
+                        <h2 class="data-title">Describing text <span>(optional)</span></h2>
+                        <button class="delete-btn fs mobile" (click)="clearField('description')" (mouseenter)="binPath3 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath3 = '/assets/imgs/Bin.png'">
+                            <img src="{{ binPath3 }}" alt="">
+                        </button>
+                    </div>                    
                     <div class="form-input">
                         <textarea class="description-input" [(ngModel)]="description" placeholder="Enter description" maxlength="200" minlength="10"></textarea>
                         <button class="delete-btn fs" (click)="clearField('description')" (mouseenter)="binPath3 = '/assets/imgs/Bin_hover.png'" (mouseleave)="binPath3 = '/assets/imgs/Bin.png'">

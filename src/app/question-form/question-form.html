@@ -16,13 +16,23 @@
     </div>
     <div class="answer-div">
         @for (answer of question.answers; track $index) {
-            <div class="answer">
+            <div class="answer desktop">
                 <h2>{{ answer.letter }}.</h2>
                 <input
                     type="text" [(ngModel)]="answer.text" minLength="1" maxlength="30">
                 <button (click)="removeAnswer($index)" class="delete-btn">
                     <img src="assets/imgs/Bin.png" class="bin-default" alt=""><img src="assets/imgs/Bin_hover.png" class="bin-hover" alt="">
                 </button>
+            </div>
+            <div class="answer mobile">
+                <div class="answer-header">
+                    <h2>{{ answer.letter }}.</h2>
+                    <button (click)="removeAnswer($index)" class="delete-btn">
+                        <img src="assets/imgs/Bin.png" class="bin-default" alt=""><img src="assets/imgs/Bin_hover.png" class="bin-hover" alt="">
+                    </button>
+                </div>                
+                <input
+                    type="text" [(ngModel)]="answer.text" minLength="1" maxlength="30">                
             </div>
         }
         <button class="add-answer" (click)="addAnswer()" [disabled]="question.answers.length === 6">Add answer <img src="assets/imgs/add_circle_white.png" alt=""></button>
