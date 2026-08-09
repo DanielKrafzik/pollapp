@@ -101,6 +101,9 @@ export class SurveyView {
     this.router.navigate(['/']);
   }
 
+  /**
+ * Toggles the visibility of the survey results section.
+ */
   toggleResults() {
     this.showResults = !this.showResults;
   }
