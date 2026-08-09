@@ -31,25 +31,21 @@
                             <span>B.</span> 
                             {{ question.B }}
                         </div>
-
                         <div class="answer" *ngIf="question.C && question.C !== ''">
                             <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'C', question.multiple_answers, $event)">
                             <span>C.</span> 
                             {{ question.C }}
                         </div>
-
                         <div class="answer" *ngIf="question.D && question.D !== ''">
                             <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'D', question.multiple_answers, $event)">
                             <span>D.</span> 
                             {{ question.D }}
                         </div>
-
                         <div class="answer" *ngIf="question.E && question.E !== ''">
                             <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'E', question.multiple_answers, $event)">
                             <span>E.</span> 
                             {{ question.E }}
                         </div>
-
                         <div class="answer" *ngIf="question.F && question.F !== ''">
                             <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'F', question.multiple_answers, $event)">
                             <span>F.</span> 
@@ -59,9 +55,7 @@
                 </div>
                 <button class="complete-btn" (click)="completeSurvey()" [disabled]="isSurveyEnded()">Complete survey</button>
             </div>
-        }
-            
-            
+        }            
             <div class="survey-results">
                 <h2 class="results-title">Survey results <span>LIVE</span></h2>
                 @if (!hasAnyVotes()) {
@@ -76,42 +70,29 @@
                     } @else {
                     <div *ngFor="let question of questions(); let i = index" class="result-question">
                         <h2>{{ i + 1 }}. {{ question.question }}</h2>
-                        
-
                         @if (question.A && question.A !== '') {
                             <div class="answer-percentage">
                                 A
                                 <div class="full-bar">
-                                    <div
-                                        class="percentage-bar"
-                                        [style.width]="question.A_percentage + '%'">
-                                    </div>
+                                    <div class="percentage-bar" [style.width]="question.A_percentage + '%'"></div>
                                 </div>
                                 {{ question.A_percentage }}%
                             </div>
                         }
-
                         @if (question.B && question.B !== '') {
                             <div class="answer-percentage">
                                 B
                                 <div class="full-bar">
-                                    <div
-                                        class="percentage-bar"
-                                        [style.width]="question.B_percentage + '%'">
-                                    </div>
+                                    <div class="percentage-bar" [style.width]="question.B_percentage + '%'"></div>
                                 </div>
                                 {{ question.B_percentage }}%
                             </div>
                         }
-
                         @if (question.C && question.C !== '') {
                             <div class="answer-percentage">
                                 C
                                 <div class="full-bar">
-                                    <div
-                                        class="percentage-bar"
-                                        [style.width]="question.C_percentage + '%'">
-                                    </div>
+                                    <div class="percentage-bar" [style.width]="question.C_percentage + '%'"></div>
                                 </div>
                                 {{ question.C_percentage }}%
                             </div>
@@ -121,10 +102,7 @@
                             <div class="answer-percentage">
                                 D
                                 <div class="full-bar">
-                                    <div
-                                        class="percentage-bar"
-                                        [style.width]="question.D_percentage + '%'">
-                                    </div>
+                                    <div class="percentage-bar" [style.width]="question.D_percentage + '%'"></div>
                                 </div>
                                 {{ question.D_percentage }}%
                             </div>
@@ -134,10 +112,7 @@
                             <div class="answer-percentage">
                                 E
                                 <div class="full-bar">
-                                    <div
-                                        class="percentage-bar"
-                                        [style.width]="question.E_percentage + '%'">
-                                    </div>
+                                    <div class="percentage-bar" [style.width]="question.E_percentage + '%'"></div>
                                 </div>
                                 {{ question.E_percentage }}%
                             </div>
@@ -147,15 +122,11 @@
                             <div class="answer-percentage">
                                 F
                                 <div class="full-bar">
-                                    <div
-                                        class="percentage-bar"
-                                        [style.width]="question.F_percentage + '%'">
-                                    </div>
+                                    <div class="percentage-bar" [style.width]="question.F_percentage + '%'"></div>
                                 </div>
                                 {{ question.F_percentage }}%
                             </div>
-                        }                   
-
+                        }                
                     </div>
                 }
             </div>

@@ -29,13 +29,9 @@ export class SurveyView {
       this.route.snapshot.paramMap.get('id')
     );
 
-    console.log(this.questions());
-
     const surveyData =
     await this.supabase.getSurvey(surveyId);
-
-      console.log('Survey:', surveyData);
-      this.survey.set(surveyData);
+    this.survey.set(surveyData);
     const questionData =
       await this.supabase.getSurveyQuestions(surveyId) ?? [];
       if (surveyData?.enddate) {

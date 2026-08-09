@@ -1,7 +1,6 @@
 <main >
     <div class="mw1400 margin-l">
         <img src="/assets/imgs/Logo.png" alt="Home" class="logo">
-
         <section class="up-section">
             <div class="new-survey-div">
                 <div>
@@ -16,15 +15,11 @@
                 <h3>Ending soon surveys</h3>
                 <div class="survey-row">
                     @for (survey of getEndingSoonSurveys(); track survey.id) {
-                        <div
-                            class="survey-card"
-                            [routerLink]="['/survey', survey.id]">
-
+                        <div class="survey-card" [routerLink]="['/survey', survey.id]">
                             <div class="survey-card-header">
                                 <p>{{ survey.category }}</p>
                                 <h4>{{ survey.name }}</h4>
                             </div>
-
                             <p class="p-highlight">
                                 {{ getEndsInText(survey.enddate) }}
                             </p>
@@ -41,31 +36,18 @@
                     <button class="survey-filter-btn" [class.active]="selectedFilter === 'past'" (click)="setFilter('past')">Past survey</button>
                 </div>
                 <div class="category-dropdown">
-                    <button
-                        type="button"
-                        class="dropdown-btn"
-                        (click)="toggleCategories()"
-                        (mouseenter)="hoverSrc()"
-                        (mouseleave)="leaveHoverSrc()">
-
+                    <button type="button" class="dropdown-btn" (click)="toggleCategories()" (mouseenter)="hoverSrc()" (mouseleave)="leaveHoverSrc()">
                         Sort by categories
                         <img src="{{ dropdownArrow }}" alt="Dropdown" class="dropdown-arrow">
                     </button>
 
                     @if (showCategories) {
                         <div class="dropdown-menu">
-                            <button
-                                type="button"
-                                class="dropdown-item"
-                                (click)="selectCategory('All Surveys')">
+                            <button type="button" class="dropdown-item" (click)="selectCategory('All Surveys')">
                                 <span>All Surveys</span>
                             </button>
                             @for (category of categories; track category) {
-                                <button
-                                    type="button"
-                                    class="dropdown-item"
-                                    (click)="selectCategory(category)">
-
+                                <button type="button" class="dropdown-item" (click)="selectCategory(category)">
                                     <span>{{ category }}</span>
                                 </button>
                             }
@@ -84,6 +66,5 @@
                 }
             </div>
         </section>
-
     </div>
 </main>

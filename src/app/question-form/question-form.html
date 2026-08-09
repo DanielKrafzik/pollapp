@@ -18,7 +18,6 @@
         @for (answer of question.answers; track $index) {
             <div class="answer">
                 <h2>{{ answer.letter }}.</h2>
-
                 <input
                     type="text" [(ngModel)]="answer.text" minLength="1" maxlength="30">
                 <button (click)="removeAnswer($index)" class="delete-btn">

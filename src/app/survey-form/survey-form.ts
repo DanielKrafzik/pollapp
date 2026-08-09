@@ -127,7 +127,6 @@ export class SurveyForm {
     this.createdSurveyId = createdSurvey.id;
     this.showPublishedOverlay.set(true);
     document.body.style.overflow = 'hidden';
-    console.log('Survey erfolgreich gespeichert!', this.showPublishedOverlay);
   }
 
   clearField(field: 'name' | 'description' | 'enddate') {
