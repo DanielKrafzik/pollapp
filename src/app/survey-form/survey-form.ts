@@ -15,12 +15,12 @@ import { PublishedOverlay } from '../published-overlay/published-overlay';
 })
 export class SurveyForm {
   showCategories = false;
-  dropdownArrow = '/assets/imgs/arrow_drop_down_down.png';
+  dropdownArrow = 'assets/imgs/arrow_drop_down_down.png';
   selectedCategory = '';
 
-  binPath1 = '/assets/imgs/Bin.png';
-  binPath2 = '/assets/imgs/Bin.png';
-  binPath3 = '/assets/imgs/Bin.png';
+  binPath1 = 'assets/imgs/Bin.png';
+  binPath2 = 'assets/imgs/Bin.png';
+  binPath3 = 'assets/imgs/Bin.png';
   questionForms = [
     {
       id: 1,
@@ -73,7 +73,7 @@ export class SurveyForm {
  */
   toggleCategories() {
     this.showCategories = !this.showCategories;
-    this.dropdownArrow === '/assets/imgs/arrow_drop_down_down_or.png' ? this.dropdownArrow = '/assets/imgs/arrow_drop_down_up_or.png' : this.dropdownArrow = '/assets/imgs/arrow_drop_down_down_or.png';
+    this.dropdownArrow === 'assets/imgs/arrow_drop_down_down_or.png' ? this.dropdownArrow = 'assets/imgs/arrow_drop_down_up_or.png' : this.dropdownArrow = 'assets/imgs/arrow_drop_down_down_or.png';
   }
 
   /**
@@ -81,8 +81,8 @@ export class SurveyForm {
  * based on whether the category dropdown is open or closed.
  */
   hoverSrc() {
-    if(this.dropdownArrow === '/assets/imgs/arrow_drop_down_down.png') this.dropdownArrow = '/assets/imgs/arrow_drop_down_down_or.png';
-    else if(this.dropdownArrow === '/assets/imgs/arrow_drop_down_up.png') this.dropdownArrow = '/assets/imgs/arrow_drop_down_up_or.png';
+    if(this.dropdownArrow === 'assets/imgs/arrow_drop_down_down.png') this.dropdownArrow = 'assets/imgs/arrow_drop_down_down_or.png';
+    else if(this.dropdownArrow === 'assets/imgs/arrow_drop_down_up.png') this.dropdownArrow = 'assets/imgs/arrow_drop_down_up_or.png';
   }
 
   /**
@@ -90,8 +90,8 @@ export class SurveyForm {
  * to its default state based on whether the category dropdown is open or closed.
  */
   leaveHoverSrc() {
-    if (this.dropdownArrow === '/assets/imgs/arrow_drop_down_down_or.png') this.dropdownArrow = '/assets/imgs/arrow_drop_down_down.png';
-    else if (this.dropdownArrow === '/assets/imgs/arrow_drop_down_up_or.png') this.dropdownArrow = '/assets/imgs/arrow_drop_down_up.png';    
+    if (this.dropdownArrow === 'assets/imgs/arrow_drop_down_down_or.png') this.dropdownArrow = 'assets/imgs/arrow_drop_down_down.png';
+    else if (this.dropdownArrow === 'assets/imgs/arrow_drop_down_up_or.png') this.dropdownArrow = 'assets/imgs/arrow_drop_down_up.png';    
   }
 
   /**
@@ -103,7 +103,7 @@ export class SurveyForm {
   selectCategory(category: string) {
     this.selectedCategory = category;
     this.showCategories = false;
-    this.dropdownArrow = '/assets/imgs/arrow_drop_down_down.png';
+    this.dropdownArrow = 'assets/imgs/arrow_drop_down_down.png';
   }
 
   /**

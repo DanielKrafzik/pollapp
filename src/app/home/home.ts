@@ -14,7 +14,7 @@ export class Home {
   selectedFilter: 'active' | 'past' = 'active';
   selectedCategory = 'All Surveys';
   showCategories = false;
-  dropdownArrow = '/assets/imgs/arrow_drop_down_down.png';
+  dropdownArrow = 'assets/imgs/arrow_drop_down_down.png';
 
   categories = [
     'Team Activities',
@@ -53,7 +53,7 @@ export class Home {
  */
   toggleCategories() {
     this.showCategories = !this.showCategories;
-    this.dropdownArrow === '/assets/imgs/arrow_drop_down_down_or.png' ? this.dropdownArrow = '/assets/imgs/arrow_drop_down_up_or.png' : this.dropdownArrow = '/assets/imgs/arrow_drop_down_down_or.png';
+    this.dropdownArrow === 'assets/imgs/arrow_drop_down_down_or.png' ? this.dropdownArrow = 'assets/imgs/arrow_drop_down_up_or.png' : this.dropdownArrow = 'assets/imgs/arrow_drop_down_down_or.png';
   }
 
   /**
@@ -65,7 +65,7 @@ export class Home {
   selectCategory(category: string) {
     this.selectedCategory = category;
     this.showCategories = false;
-    this.dropdownArrow = '/assets/imgs/arrow_drop_down_down.png';
+    this.dropdownArrow = 'assets/imgs/arrow_drop_down_down.png';
   }
 
   /**
@@ -94,8 +94,8 @@ export class Home {
  * based on whether the category dropdown is open or closed.
  */
   hoverSrc() {
-    if(this.dropdownArrow === '/assets/imgs/arrow_drop_down_down.png') this.dropdownArrow = '/assets/imgs/arrow_drop_down_down_or.png';
-    else if(this.dropdownArrow === '/assets/imgs/arrow_drop_down_up.png') this.dropdownArrow = '/assets/imgs/arrow_drop_down_up_or.png';
+    if(this.dropdownArrow === 'assets/imgs/arrow_drop_down_down.png') this.dropdownArrow = 'assets/imgs/arrow_drop_down_down_or.png';
+    else if(this.dropdownArrow === 'assets/imgs/arrow_drop_down_up.png') this.dropdownArrow = 'assets/imgs/arrow_drop_down_up_or.png';
   }
 
   /**
@@ -103,8 +103,8 @@ export class Home {
  * to its default state based on whether the dropdown is open or closed.
  */
   leaveHoverSrc() {
-    if (this.dropdownArrow === '/assets/imgs/arrow_drop_down_down_or.png') this.dropdownArrow = '/assets/imgs/arrow_drop_down_down.png';
-     else if (this.dropdownArrow === '/assets/imgs/arrow_drop_down_up_or.png') this.dropdownArrow = '/assets/imgs/arrow_drop_down_up.png';
+    if (this.dropdownArrow === 'assets/imgs/arrow_drop_down_down_or.png') this.dropdownArrow = 'assets/imgs/arrow_drop_down_down.png';
+     else if (this.dropdownArrow === 'assets/imgs/arrow_drop_down_up_or.png') this.dropdownArrow = 'assets/imgs/arrow_drop_down_up.png';
   }
 
   /**

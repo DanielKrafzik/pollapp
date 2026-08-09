@@ -1,10 +1,10 @@
 <main>
     <div class="mw1400 margin-l">
         <header>
-            <img src="/assets/imgs/Logo_dark.png" alt="Logo" routerLink="/">
+            <img src="assets/imgs/Logo_dark.png" alt="Logo" routerLink="/">
             <button class="create-btn" routerLink="/survey-form">
                 Create Survey
-                <img src="/assets/imgs/add_circle.png" alt="Add Circle" class="add-circle">
+                <img src="assets/imgs/add_circle.png" alt="Add Circle" class="add-circle">
             </button>
         </header>
 
@@ -62,7 +62,7 @@
             <div class="survey-results">
                 <button class="mobile show-btn" (click)="toggleResults()">
                     <p>{{ showResults ? 'Close results' : 'Show results' }}</p>
-                    <img [src]="showResults ? '/assets/imgs/arrow_up_black.png' : '/assets/imgs/arrow_down_black.png'" alt="">
+                    <img [src]="showResults ? 'assets/imgs/arrow_up_black.png' : 'assets/imgs/arrow_down_black.png'" alt="">
                 </button>
                 @if (showResults) {
                     <h2 class="results-title">Survey results <span>LIVE</span></h2>                
