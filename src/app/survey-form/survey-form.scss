@@ -308,3 +308,22 @@ header {
 .fs {
     align-self: flex-start;
 }
+
+@media (max-width: 1290px) {
+    main {
+        width: 100%;
+    }
+
+    section {
+        width: 100%;
+    }
+
+    .form {
+        width: 100%;
+    }
+
+    .top-form {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
