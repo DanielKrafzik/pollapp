@@ -17,6 +17,7 @@ export class SurveyView {
   questions = signal<any[]>([]);
   selectedAnswers: { [questionId: number]: string[] } = {};
   formattedEndDate: string = '';
+  showResults = true;
 
   constructor(
     private route: ActivatedRoute,
@@ -98,5 +99,9 @@ export class SurveyView {
       for (const answer of answers) {await this.supabase.vote(Number(questionId), answer as 'A' | 'B' | 'C' | 'D' | 'E' | 'F');}
     }
     this.router.navigate(['/']);
+  }
+
+  toggleResults() {
+    this.showResults = !this.showResults;
   }
 }

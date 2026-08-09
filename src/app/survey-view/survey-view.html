@@ -11,7 +11,10 @@
         <section class="survey-data">
             @if (survey(); as currentSurvey) {
             <div class="survey-answers">
-                <h2 class="published">Published</h2>
+                <div class="survey-header">
+                    <h2 class="published">Published</h2>
+                    <button routerLink="/" class="mobile">X</button>
+                </div>
                 <div class="survey-info">
                     <p>Ends on {{ formattedEndDate }}</p>
                     <p>Category: {{ currentSurvey.category }}</p>
@@ -57,77 +60,83 @@
             </div>
         }            
             <div class="survey-results">
-                <h2 class="results-title">Survey results <span>LIVE</span></h2>
-                @if (!hasAnyVotes()) {
-                    <div class="empty-results">
-                        <p class="empty-results-text">
-                            Results will be shown here after participants complete the survey. 
-                        </p>
-                        <p class="no-answers-text">
-                            There are no answers yet.
-                        </p>
-                    </div>
-                    } @else {
-                    <div *ngFor="let question of questions(); let i = index" class="result-question">
-                        <h2>{{ i + 1 }}. {{ question.question }}</h2>
-                        @if (question.A && question.A !== '') {
-                            <div class="answer-percentage">
-                                A
-                                <div class="full-bar">
-                                    <div class="percentage-bar" [style.width]="question.A_percentage + '%'"></div>
+                <button class="mobile show-btn" (click)="toggleResults()">
+                    <p>{{ showResults ? 'Close results' : 'Show results' }}</p>
+                    <img [src]="showResults ? '/assets/imgs/arrow_up_black.png' : '/assets/imgs/arrow_down_black.png'" alt="">
+                </button>
+                @if (showResults) {
+                    <h2 class="results-title">Survey results <span>LIVE</span></h2>                
+                    @if (!hasAnyVotes()) {
+                        <div class="empty-results">
+                            <p class="empty-results-text">
+                                Results will be shown here after participants complete the survey. 
+                            </p>
+                            <p class="no-answers-text">
+                                There are no answers yet.
+                            </p>
+                        </div>
+                        } @else {
+                        <div *ngFor="let question of questions(); let i = index" class="result-question">
+                            <h2>{{ i + 1 }}. {{ question.question }}</h2>
+                            @if (question.A && question.A !== '') {
+                                <div class="answer-percentage">
+                                    A
+                                    <div class="full-bar">
+                                        <div class="percentage-bar" [style.width]="question.A_percentage + '%'"></div>
+                                    </div>
+                                    {{ question.A_percentage }}%
                                 </div>
-                                {{ question.A_percentage }}%
-                            </div>
-                        }
-                        @if (question.B && question.B !== '') {
-                            <div class="answer-percentage">
-                                B
-                                <div class="full-bar">
-                                    <div class="percentage-bar" [style.width]="question.B_percentage + '%'"></div>
+                            }
+                            @if (question.B && question.B !== '') {
+                                <div class="answer-percentage">
+                                    B
+                                    <div class="full-bar">
+                                        <div class="percentage-bar" [style.width]="question.B_percentage + '%'"></div>
+                                    </div>
+                                    {{ question.B_percentage }}%
                                 </div>
-                                {{ question.B_percentage }}%
-                            </div>
-                        }
-                        @if (question.C && question.C !== '') {
-                            <div class="answer-percentage">
-                                C
-                                <div class="full-bar">
-                                    <div class="percentage-bar" [style.width]="question.C_percentage + '%'"></div>
+                            }
+                            @if (question.C && question.C !== '') {
+                                <div class="answer-percentage">
+                                    C
+                                    <div class="full-bar">
+                                        <div class="percentage-bar" [style.width]="question.C_percentage + '%'"></div>
+                                    </div>
+                                    {{ question.C_percentage }}%
                                 </div>
-                                {{ question.C_percentage }}%
-                            </div>
-                        }
+                            }
 
-                        @if (question.D && question.D !== '') {
-                            <div class="answer-percentage">
-                                D
-                                <div class="full-bar">
-                                    <div class="percentage-bar" [style.width]="question.D_percentage + '%'"></div>
+                            @if (question.D && question.D !== '') {
+                                <div class="answer-percentage">
+                                    D
+                                    <div class="full-bar">
+                                        <div class="percentage-bar" [style.width]="question.D_percentage + '%'"></div>
+                                    </div>
+                                    {{ question.D_percentage }}%
                                 </div>
-                                {{ question.D_percentage }}%
-                            </div>
-                        }
+                            }
 
-                        @if (question.E && question.E !== '') {
-                            <div class="answer-percentage">
-                                E
-                                <div class="full-bar">
-                                    <div class="percentage-bar" [style.width]="question.E_percentage + '%'"></div>
+                            @if (question.E && question.E !== '') {
+                                <div class="answer-percentage">
+                                    E
+                                    <div class="full-bar">
+                                        <div class="percentage-bar" [style.width]="question.E_percentage + '%'"></div>
+                                    </div>
+                                    {{ question.E_percentage }}%
                                 </div>
-                                {{ question.E_percentage }}%
-                            </div>
-                        }
+                            }
 
-                        @if (question.F && question.F !== '') {
-                            <div class="answer-percentage">
-                                F
-                                <div class="full-bar">
-                                    <div class="percentage-bar" [style.width]="question.F_percentage + '%'"></div>
+                            @if (question.F && question.F !== '') {
+                                <div class="answer-percentage">
+                                    F
+                                    <div class="full-bar">
+                                        <div class="percentage-bar" [style.width]="question.F_percentage + '%'"></div>
+                                    </div>
+                                    {{ question.F_percentage }}%
                                 </div>
-                                {{ question.F_percentage }}%
-                            </div>
-                        }                
-                    </div>
+                            }                
+                        </div>
+                    }
                 }
             </div>
         </section>
