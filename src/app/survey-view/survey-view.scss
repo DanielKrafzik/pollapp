@@ -139,6 +139,20 @@ section {
 
 .survey-results {
     margin-top: 140px;
+    width: 315px;
+}
+
+.empty-results {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 214px;
+    font-weight: 700;
+    font-size: 18px;
+
+    .no-answers-text {
+        text-align: center;
+    }
 }
 
 .results-title {

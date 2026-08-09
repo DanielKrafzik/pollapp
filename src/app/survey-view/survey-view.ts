@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Supabase } from '../supabase';
 import { NgFor, NgClass, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { signal } from '@angular/core';
 
@@ -20,7 +20,8 @@ export class SurveyView {
 
   constructor(
     private route: ActivatedRoute,
-    public supabase: Supabase
+    public supabase: Supabase,
+    private router: Router
   ) {}
 
   async ngOnInit() {
@@ -28,7 +29,7 @@ export class SurveyView {
       this.route.snapshot.paramMap.get('id')
     );
 
-    console.log('Survey ID:', surveyId);
+    console.log(this.questions());
 
     const surveyData =
     await this.supabase.getSurvey(surveyId);
@@ -85,6 +86,10 @@ export class SurveyView {
       this.questions.set(mappedQuestions);
   }
 
+  hasAnyVotes(): boolean {
+    return this.questions().some(question => question.totalVotes > 0);
+  }
+
   selectAnswer(
     questionId: number,
     answer: string,
@@ -109,6 +114,21 @@ export class SurveyView {
     }
   }
 
+  isSurveyEnded(): boolean {
+    const survey = this.survey();
+
+    if (!survey?.enddate) {
+      return false;
+    }
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    const endDate = new Date(survey.enddate);
+
+    return endDate < today;
+  }
+
   async completeSurvey() {
 
     for (const questionId in this.selectedAnswers) {
@@ -126,6 +146,6 @@ export class SurveyView {
 
     }
 
-    alert('Survey completed!');
+    this.router.navigate(['/']);
   }
 }
