@@ -2,6 +2,8 @@ main {
     min-height: 100vh;
     background-color: rgba(53, 39, 58, 1);
     padding-bottom: 120px;
+    display: flex;
+    justify-content: center;
 }
 
 .margin-l {
