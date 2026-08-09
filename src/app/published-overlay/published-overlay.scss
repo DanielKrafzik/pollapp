@@ -44,3 +44,17 @@ main {
         left: 309px;
     }
 }
+
+@media (max-width: 760px) {
+    .publish-div {
+        top: 80%;
+        left: 50%;
+        width: 300px;
+        transform: translate(-50%, -50%);
+
+        button {
+            top: 19px;
+            left: 250px;
+        }
+    }
+}
