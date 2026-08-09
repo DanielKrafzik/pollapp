@@ -50,6 +50,11 @@ export class SurveyForm {
 
   constructor(public supabase: Supabase, private route: ActivatedRoute, private router: Router) {}
 
+  /**
+ * Adds a new empty question form to the survey.
+ * Each new question starts with two empty answer options (A and B)
+ * and allows only a single answer by default.
+ */
   addQuestionForm() {
     this.questionForms.push({
       id: this.questionForms.length + 1,
@@ -62,30 +67,53 @@ export class SurveyForm {
     });
   }
 
+  /**
+ * Toggles the visibility of the category dropdown
+ * and updates the dropdown arrow to match its current state.
+ */
   toggleCategories() {
     this.showCategories = !this.showCategories;
     this.dropdownArrow === '/assets/imgs/arrow_drop_down_down_or.png' ? this.dropdownArrow = '/assets/imgs/arrow_drop_down_up_or.png' : this.dropdownArrow = '/assets/imgs/arrow_drop_down_down_or.png';
   }
 
+  /**
+ * Updates the dropdown arrow image to its hover state
+ * based on whether the category dropdown is open or closed.
+ */
   hoverSrc() {
-    if(this.dropdownArrow === '/assets/imgs/arrow_drop_down_down.png')      this.dropdownArrow = '/assets/imgs/arrow_drop_down_down_or.png';
+    if(this.dropdownArrow === '/assets/imgs/arrow_drop_down_down.png') this.dropdownArrow = '/assets/imgs/arrow_drop_down_down_or.png';
     else if(this.dropdownArrow === '/assets/imgs/arrow_drop_down_up.png') this.dropdownArrow = '/assets/imgs/arrow_drop_down_up_or.png';
   }
 
+  /**
+ * Resets the dropdown arrow image from its hover state
+ * to its default state based on whether the category dropdown is open or closed.
+ */
   leaveHoverSrc() {
-    if (this.dropdownArrow === '/assets/imgs/arrow_drop_down_down_or.png') {
-      this.dropdownArrow = '/assets/imgs/arrow_drop_down_down.png';
-    } else if (this.dropdownArrow === '/assets/imgs/arrow_drop_down_up_or.png') {
-      this.dropdownArrow = '/assets/imgs/arrow_drop_down_up.png';
-    }
+    if (this.dropdownArrow === '/assets/imgs/arrow_drop_down_down_or.png') this.dropdownArrow = '/assets/imgs/arrow_drop_down_down.png';
+    else if (this.dropdownArrow === '/assets/imgs/arrow_drop_down_up_or.png') this.dropdownArrow = '/assets/imgs/arrow_drop_down_up.png';    
   }
 
+  /**
+ * Selects the specified survey category, closes the category dropdown,
+ * and resets the dropdown arrow to its default state.
+ *
+ * @param category - The category to select.
+ */
   selectCategory(category: string) {
     this.selectedCategory = category;
     this.showCategories = false;
     this.dropdownArrow = '/assets/imgs/arrow_drop_down_down.png';
   }
 
+  /**
+ * Removes a question from the survey.
+ * If the first question is selected, it is reset to its initial state
+ * instead of being removed. All other questions are removed completely,
+ * and the remaining question IDs are reassigned in sequential order.
+ *
+ * @param index - The index of the question to reset or remove.
+ */
   removeQuestion(index: number) {
     if (index === 0) {
       this.questionForms[0].question = '';
@@ -96,70 +124,67 @@ export class SurveyForm {
       ];
     } else {
       this.questionForms.splice(index, 1);
-
-      this.questionForms.forEach((question, i) => {
-        question.id = i + 1;
-      });
+      this.questionForms.forEach((question, i) => {question.id = i + 1;});
     }
   }
 
+  /**
+ * Validates and publishes the survey to Supabase.
+ * After the survey is created, its questions are stored using the generated
+ * survey ID. Finally, the published overlay is displayed and page scrolling
+ * is disabled while the overlay is open.
+ */
   async publishSurvey() {
-
-    if (!this.canPublish()) {
-      alert('Please fill in all required fields');
-      return;
-    }
-
+    if (!this.canPublish()) return;
     const createdSurvey = await this.supabase.createSurvey({
       name: this.name,
       description: this.description,
       category: this.selectedCategory,
       enddate: this.enddate || null
     });
-
     if (!createdSurvey) return;
-
-    await this.supabase.createQuestions(
-      createdSurvey.id,
-      this.questionForms
-    );
-
+    await this.supabase.createQuestions(createdSurvey.id, this.questionForms);
     this.createdSurveyId = createdSurvey.id;
     this.showPublishedOverlay.set(true);
     document.body.style.overflow = 'hidden';
   }
 
+  /**
+ * Clears the value of the specified survey form field.
+ *
+ * @param field - The form field to clear. Can be 'name', 'description', or 'enddate'.
+ */
   clearField(field: 'name' | 'description' | 'enddate') {
     this[field] = '';
   }
 
+  /**
+ * Checks whether all required survey fields are valid and complete.
+ * The survey must have a valid name, a selected category, and valid questions.
+ * Each question must contain at least two non-empty answer options.
+ *
+ * @returns `true` if the survey can be published, otherwise `false`.
+ */
   canPublish(): boolean {
     if (!this.name.trim() || this.name.length < 3) return false;
     if (!this.selectedCategory.trim()) return false;
-
     for (const question of this.questionForms) {
-      if (!question.question.trim() || question.question.length < 3) {
-        return false;
-      }
-
-      if (question.answers.length < 2) {
-        return false;
-      }
-
+      if (!question.question.trim() || question.question.length < 3) return false;
+      if (question.answers.length < 2) return false;
       for (const answer of question.answers) {
-        if (!answer.text.trim()) {
-          return false;
-        }
+        if (!answer.text.trim()) return false;        
       }
     }
-
     return true;
   }
 
+  /**
+ * Navigates to the newly created survey and restores page scrolling.
+ * Navigation is only performed if a valid survey ID is available.
+ */
   goToSurvey() {
     document.body.style.overflow = '';
     if (this.createdSurveyId === null) return;
-
     this.router.navigate(['/survey', this.createdSurveyId]);
   }
 }

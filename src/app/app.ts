@@ -13,6 +13,10 @@ export class App {
   protected readonly title = signal('pollapp');
   dbService = inject(Supabase);
 
+  /**
+ * Initializes the component by loading a specific survey
+ * and its associated questions from the database.
+ */
   async ngOnInit() {
     await this.dbService.getSurvey(2);
     await this.dbService.getSurveyQuestions(1);
