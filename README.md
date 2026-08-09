@@ -1,59 +1,117 @@
-# Pollapp
+# PollApp
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.9.
+PollApp is a web application for creating, publishing and participating in surveys.
 
-## Development server
+Users can create surveys with multiple questions and answer options, choose whether multiple answers are allowed, set an optional end date and organize surveys by category. Published surveys can be answered by other users and the results are displayed as percentages.
 
-To start a local development server, run:
+The application was built with Angular and uses Supabase as its backend and database.
+
+## Features
+
+### Create Surveys
+
+- Create surveys with a custom name
+- Add an optional description
+- Select a survey category
+- Set an optional end date
+- Add multiple questions
+- Add between 2 and 6 answers per question
+- Allow single or multiple answers
+- Remove questions and answers before publishing
+- Form validation before publishing
+
+### Participate in Surveys
+
+Users can open published surveys and vote for their preferred answers.
+
+Depending on the survey configuration, questions support:
+
+- Single-choice answers
+- Multiple-choice answers
+
+Votes are stored in Supabase and assigned to the corresponding survey question.
+
+### Survey Results
+
+Results are calculated based on the number of votes for each answer and displayed as percentages.
+
+If a survey has not received any votes yet, the results section displays:
+
+> There are no answers yet.
+
+### Survey Overview
+
+Surveys can be filtered by:
+
+- Active surveys
+- Past surveys
+- Category
+
+The application also displays surveys that are ending soon, sorted by their end date.
+
+Surveys without an end date remain active.
+
+## Technologies
+
+- Angular
+- TypeScript
+- HTML
+- SCSS
+- Supabase
+- PostgreSQL
+- Angular Router
+- Angular Signals
+
+## Database Structure
+
+The application uses two main Supabase tables.
+
+### `surveys`
+
+Stores general information about a survey.
+
+| Column | Description |
+| --- | --- |
+| `id` | Unique survey ID |
+| `created_at` | Creation timestamp |
+| `name` | Survey name |
+| `description` | Optional description |
+| `category` | Survey category |
+| `enddate` | Optional end date |
+
+### `survey_questions`
+
+Stores the questions belonging to surveys.
+
+| Column | Description |
+| --- | --- |
+| `id` | Unique question ID |
+| `created_at` | Creation timestamp |
+| `survey_id` | ID of the related survey |
+| `question` | Question text |
+| `multiple_answers` | Determines whether multiple answers are allowed |
+| `A` - `F` | Answer options |
+| `A_count` - `F_count` | Number of votes for each answer |
+
+The `survey_id` connects each question to its corresponding survey.
+
+## Project Structure
+
+The application is divided into reusable Angular components.
+
+Some of the main components are:
+
+- `Home` – survey overview and filtering
+- `SurveyForm` – creation of new surveys
+- `QuestionForm` – reusable form for individual questions
+- `SurveyView` – displays a survey and handles voting/results
+- `PublishedOverlay` – confirmation after publishing a survey
+
+Supabase communication is handled through a dedicated service.
+
+## Installation
+
+Clone the repository:
 
 ```bash
-ng serve
-```
-
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+git clone <repository-url>
