@@ -15,6 +15,7 @@ export class Home {
   selectedCategory = 'All Surveys';
   showCategories = false;
   dropdownArrow = 'assets/imgs/arrow_drop_down_down.png';
+  exampleImg = 'assets/imgs/example2.png';
 
   categories = [
     'Team Activities',
