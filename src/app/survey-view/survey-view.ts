@@ -20,6 +20,7 @@ export class SurveyView {
   formattedEndDate: string = '';
   showResults = true;
   showSurveyForm = false;
+  hasCompletedSurvey = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,6 +35,7 @@ export class SurveyView {
  */
   async ngOnInit() {
     const surveyId = Number(this.route.snapshot.paramMap.get('id'));
+    this.hasCompletedSurvey = localStorage.getItem(`survey-${surveyId}-completed`) === 'true';
     const surveyData =
     await this.supabase.getSurvey(surveyId);
     this.survey.set(surveyData);
@@ -98,10 +100,12 @@ export class SurveyView {
  * After all votes have been submitted, the user is redirected to the home page.
  */
   async completeSurvey() {
+    const surveyId = Number(this.route.snapshot.paramMap.get('id'));
     for (const questionId in this.selectedAnswers) {
       const answers = this.selectedAnswers[questionId];
       for (const answer of answers) {await this.supabase.vote(Number(questionId), answer as 'A' | 'B' | 'C' | 'D' | 'E' | 'F');}
     }
+    localStorage.setItem(`survey-${surveyId}-completed`,'true');
     this.router.navigate(['/']);
   }
 

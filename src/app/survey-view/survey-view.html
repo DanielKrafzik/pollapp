@@ -56,7 +56,10 @@
                         </label>
                     </div>
                 </div>
-                <button class="complete-btn" (click)="completeSurvey()" [disabled]="isSurveyEnded()">Complete survey</button>
+                <button class="complete-btn" (click)="completeSurvey()" [disabled]="isSurveyEnded() || hasCompletedSurvey">Complete survey</button>
+                @if (hasCompletedSurvey) {
+                <p>You have already completed this survey.</p>
+                }
             </div>
         }            
             <div class="survey-results">
