@@ -119,11 +119,6 @@ export class SurveyForm {
   removeQuestion(index: number) {
     if (index === 0) {
       this.questionForms[0].question = '';
-      this.questionForms[0].multiple_answers = false;
-      this.questionForms[0].answers = [
-        { letter: 'A', text: '' },
-        { letter: 'B', text: '' }
-      ];
     } else {
       this.questionForms.splice(index, 1);
       this.questionForms.forEach((question, i) => {question.id = i + 1;});
