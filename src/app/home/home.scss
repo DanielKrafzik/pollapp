@@ -257,14 +257,14 @@ p {
 
 .card-enddate {
     font-family: 'Mulish', serif;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 500;
     color: rgba(34, 18, 39, 1);
     background-color: rgba(255, 207, 161, 1);
     padding: 3px 6px;
     gap: 10px;
     border-radius: 0 14px 0 0;
-    width: 89px;
+    width: 124px;
     height: 21px;
     justify-self: flex-end;
     text-align: center;
@@ -331,6 +331,7 @@ p {
     span {
         border-radius: 6px;
         padding: 4px;
+        font-size: 16px;
 
         &:hover {
             background-color: rgba(244, 233, 251, 1);
@@ -345,7 +346,7 @@ p {
     padding: 4px 4px 4px 10px;
     gap: 10px;
     font-family: 'Mulish', serif;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     color: rgba(255, 183, 112, 1);
     letter-spacing: 2%;
@@ -415,7 +416,7 @@ p {
 
         img {
             width: 280px;
-            height: 190px;
+            aspect-ratio: 1;
             justify-self: center;
         }
     }
