@@ -82,27 +82,27 @@
                                 <div class="answer-percentage">
                                     A
                                     <div class="full-bar">
-                                        <div class="percentage-bar" [style.width]="question.A_percentage + '%'"></div>
+                                        <div class="percentage-bar" [style.width]="getPreviewPercentage(question, 'A') + '%'"></div>
                                     </div>
-                                    {{ question.A_percentage }}%
+                                    {{ getPreviewPercentage(question, 'A') }}%
                                 </div>
                             }
                             @if (question.B && question.B !== '') {
                                 <div class="answer-percentage">
                                     B
                                     <div class="full-bar">
-                                        <div class="percentage-bar" [style.width]="question.B_percentage + '%'"></div>
+                                        <div class="percentage-bar" [style.width]="getPreviewPercentage(question, 'B') + '%'"></div>
                                     </div>
-                                    {{ question.B_percentage }}%
+                                    {{ getPreviewPercentage(question, 'B') }}%
                                 </div>
                             }
                             @if (question.C && question.C !== '') {
                                 <div class="answer-percentage">
                                     C
                                     <div class="full-bar">
-                                        <div class="percentage-bar" [style.width]="question.C_percentage + '%'"></div>
+                                        <div class="percentage-bar" [style.width]="getPreviewPercentage(question, 'C') + '%'"></div>
                                     </div>
-                                    {{ question.C_percentage }}%
+                                    {{ getPreviewPercentage(question, 'C') }}%
                                 </div>
                             }
 
@@ -110,9 +110,9 @@
                                 <div class="answer-percentage">
                                     D
                                     <div class="full-bar">
-                                        <div class="percentage-bar" [style.width]="question.D_percentage + '%'"></div>
+                                        <div class="percentage-bar" [style.width]="getPreviewPercentage(question, 'D') + '%'"></div>
                                     </div>
-                                    {{ question.D_percentage }}%
+                                    {{ getPreviewPercentage(question, 'D') }}%
                                 </div>
                             }
 
@@ -120,9 +120,9 @@
                                 <div class="answer-percentage">
                                     E
                                     <div class="full-bar">
-                                        <div class="percentage-bar" [style.width]="question.E_percentage + '%'"></div>
+                                        <div class="percentage-bar" [style.width]="getPreviewPercentage(question, 'E') + '%'"></div>
                                     </div>
-                                    {{ question.E_percentage }}%
+                                    {{ getPreviewPercentage(question, 'E') }}%
                                 </div>
                             }
 
@@ -130,9 +130,9 @@
                                 <div class="answer-percentage">
                                     F
                                     <div class="full-bar">
-                                        <div class="percentage-bar" [style.width]="question.F_percentage + '%'"></div>
+                                        <div class="percentage-bar" [style.width]="getPreviewPercentage(question, 'F') + '%'"></div>
                                     </div>
-                                    {{ question.F_percentage }}%
+                                    {{ getPreviewPercentage(question, 'F') }}%
                                 </div>
                             }                
                         </div>

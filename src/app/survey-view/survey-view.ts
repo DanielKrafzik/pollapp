@@ -52,7 +52,9 @@ export class SurveyView {
  * @returns `true` if at least one question has votes, otherwise `false`.
  */
   hasAnyVotes(): boolean {
-    return this.questions().some(question => question.totalVotes > 0);
+    const hasStoredVotes = this.questions().some(question => question.totalVotes > 0);
+    const hasSelectedAnswers = Object.values(this.selectedAnswers).some(answers => answers.length > 0);
+    return hasStoredVotes || hasSelectedAnswers;
   }
 
   /**
@@ -119,4 +121,36 @@ export class SurveyView {
     this.showSurveyForm = false;
     document.body.style.overflow = '';
   }
+
+  getPreviewCount(
+    question: any,
+    answer: 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
+  ): number {
+    const baseCount = question[`${answer}_count`] ?? 0;
+
+    const isSelected =
+      this.selectedAnswers[question.id]?.includes(answer);
+
+    return baseCount + (isSelected ? 1 : 0);
+  }
+
+  getPreviewTotal(question: any): number {
+    const selectedCount =
+      this.selectedAnswers[question.id]?.length ?? 0;
+
+    return question.totalVotes + selectedCount;
+  }
+
+  getPreviewPercentage(
+    question: any,
+    answer: 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
+  ): number {
+    const total = this.getPreviewTotal(question);
+
+    if (total === 0) return 0;
+
+    const count = this.getPreviewCount(question, answer);
+
+    return Math.round((count / total) * 100);
+}
 }
