@@ -38,7 +38,7 @@
                                 </button>
                             </div>                            
                             <div class="form-input">
-                                <input type="date" class="date-input" [(ngModel)]="enddate" placeholder="" min="{{ minDate }}">
+                                <input type="date" class="date-input" [(ngModel)]="enddate" placeholder="" min="{{ minDate }}" (blur)="validateEndDate()">
                                 <button class="delete-btn" (click)="clearField('enddate')" (mouseenter)="binPath2 = 'assets/imgs/Bin_hover.png'" (mouseleave)="binPath2 = 'assets/imgs/Bin.png'">
                                     <img src="{{ binPath2 }}" alt="">
                                 </button>

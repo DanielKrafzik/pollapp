@@ -129,6 +129,17 @@ export class SurveyForm {
   }
 
   /**
+ * Generates a default end date three days from the current date.
+ *
+ * @returns The default end date in YYYY-MM-DD format.
+ */
+  getDefaultEndDate(): string {
+    const date = new Date();
+    date.setDate(date.getDate() + 3);
+    return date.toISOString().split('T')[0];
+  }
+
+  /**
  * Validates and publishes the survey to Supabase.
  * After the survey is created, its questions are stored using the generated
  * survey ID. Finally, the published overlay is displayed and page scrolling
@@ -140,7 +151,7 @@ export class SurveyForm {
       name: this.name,
       description: this.description,
       category: this.selectedCategory,
-      enddate: this.enddate || null
+      enddate: this.enddate || this.getDefaultEndDate()
     });
     if (!createdSurvey) return;
     await this.supabase.createQuestions(createdSurvey.id, this.questionForms);
@@ -186,5 +197,15 @@ export class SurveyForm {
     document.body.style.overflow = '';
     if (this.createdSurveyId === null) return;
     this.router.navigate(['/survey', this.createdSurveyId]);
+  }
+
+  /**
+ * Validates the selected survey end date.
+ * Clears the value if the selected date is earlier than the current date.
+ */
+  validateEndDate() {
+    if (this.enddate && this.enddate < this.minDate) {
+      this.enddate = this.getDefaultEndDate();;
+    }
   }
 }
