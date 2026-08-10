@@ -14,6 +14,10 @@ main {
     padding-bottom: 39px;
 }
 
+label {
+    display: flex;
+}
+
 .create-btn {
     display: flex;
     align-items: center;

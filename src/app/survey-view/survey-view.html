@@ -24,36 +24,36 @@
                 <div class="answer-grid">
                     <div *ngFor="let question of questions(); let i = index">
                         <h2>{{ i + 1 }}. {{ question.question }}</h2>
-                        <div class="answer">
+                        <label class="answer">
                             <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'A', question.multiple_answers, $event)">
                             <span>A.</span> 
                             {{ question.A }}
-                        </div>
-                        <div class="answer">
+                        </label>
+                        <label class="answer">
                             <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'B', question.multiple_answers, $event)">
                             <span>B.</span> 
                             {{ question.B }}
-                        </div>
-                        <div class="answer" *ngIf="question.C && question.C !== ''">
+                        </label>
+                        <label class="answer" *ngIf="question.C && question.C !== ''">
                             <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'C', question.multiple_answers, $event)">
                             <span>C.</span> 
                             {{ question.C }}
-                        </div>
-                        <div class="answer" *ngIf="question.D && question.D !== ''">
+                        </label>
+                        <label class="answer" *ngIf="question.D && question.D !== ''">
                             <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'D', question.multiple_answers, $event)">
                             <span>D.</span> 
                             {{ question.D }}
-                        </div>
-                        <div class="answer" *ngIf="question.E && question.E !== ''">
+                        </label>
+                        <label class="answer" *ngIf="question.E && question.E !== ''">
                             <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'E', question.multiple_answers, $event)">
                             <span>E.</span> 
                             {{ question.E }}
-                        </div>
-                        <div class="answer" *ngIf="question.F && question.F !== ''">
+                        </label>
+                        <label class="answer" *ngIf="question.F && question.F !== ''">
                             <input [type]="question.multiple_answers ? 'checkbox' : 'radio'" [name]="'question-' + question.id" (change)="selectAnswer(question.id, 'F', question.multiple_answers, $event)">
                             <span>F.</span> 
                             {{ question.F }}
-                        </div>
+                        </label>
                     </div>
                 </div>
                 <button class="complete-btn" (click)="completeSurvey()" [disabled]="isSurveyEnded()">Complete survey</button>
