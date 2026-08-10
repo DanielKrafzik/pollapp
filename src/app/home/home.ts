@@ -4,6 +4,7 @@ import { NgFor, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { SurveyForm } from '../survey-form/survey-form';
+import { HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -160,5 +161,20 @@ export class Home {
   closeSurveyForm() {
     this.showSurveyForm = false;
     document.body.style.overflow = '';
+  }
+
+  /**
+ * Closes the category dropdown when the user clicks outside of it.
+ *
+ * @param event The click event triggered on the document.
+ */
+  @HostListener('document:click', ['$event'])
+  closeDropdownOnOutsideClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+
+    if (!target.closest('.category-dropdown')) {
+      this.showCategories = false;
+      this.dropdownArrow = 'assets/imgs/arrow_drop_down_down.png';
+    }
   }
 }

@@ -33,11 +33,9 @@
                                 <img src="{{ binPath1 }}" alt="">
                             </button>
                         </div>
-                            @if (nameError) {
-                            <p class="error-text">
+                            <p class="error-text" [class.visible]="nameError">
                                 Please enter at least 3 characters.
-                            </p>
-                            }
+                            </p>                            
                     </div>
                     <div class="date-category">
                         <div class="date-div">
@@ -69,11 +67,9 @@
                                 </div>
                             }
                             <p class="selected-category">{{ selectedCategory }}</p>
-                            @if (categoryError) {
-                            <p class="error-text">
+                            <p class="error-text" [class.visible]="nameError">
                                 Please select a category.
-                            </p>
-                            }
+                            </p>                            
                         </div>
                     </div>                  
                 </div>

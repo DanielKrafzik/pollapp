@@ -7,11 +7,9 @@
         </button>
     </div>
     <input type="text" class="question-input" [(ngModel)]="question.question" minLength="3" maxlength="40" (blur)="validateQuestion()" (input)="question.error = false">
-    @if (question.error) {
-    <p class="error-text">
+    <p class="error-text" [class.visible]="question.error">
         Please enter at least 3 characters.
-    </p>
-    }
+    </p>    
     <div class="answers-header">
         <h2 class="answers-title">Answers</h2>
         <div class="answers-checkbox">
@@ -39,11 +37,9 @@
                 <input
                     type="text" [(ngModel)]="answer.text" minLength="1" maxlength="30" (blur)="validateAnswer(answer)" (input)="answer.error = false">                
             </div>
-            @if (answer.error) {
-            <p class="error-text">
+            <p class="error-text" [class.visible]="answer.error">
                 Please enter an answer.
-            </p>
-            }
+            </p>            
         }
         <button class="add-answer" (click)="addAnswer()" [disabled]="question.answers.length === 6">Add answer <img src="assets/imgs/add_circle_white.png" alt=""></button>
     </div>

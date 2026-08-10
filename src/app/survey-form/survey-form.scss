@@ -325,6 +325,13 @@ header {
 
 .error-text {
     color: red;
+    margin: 0;
+    height: 20px;
+    visibility: hidden;
+    
+    &.visible {
+    visibility: visible;
+  }
 }
 
 @media (max-width: 1290px) {
@@ -351,12 +358,13 @@ header {
     }
 
     .logo {
-        margin-top: 54px;
+        margin-top: 16px;
         padding-left: 16px;
     }
     main {
         width: 100%;
         box-sizing: border-box;
+        margin-top: 32px;
     }
 
     header {

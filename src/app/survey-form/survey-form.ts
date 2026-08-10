@@ -149,16 +149,16 @@ export class SurveyForm {
   async publishSurvey() {
     this.validateAllFields();
     if (!this.canPublish()) return;
-    const createdSurvey = await this.supabase.createSurvey({
-      name: this.name,
-      description: this.description,
-      category: this.selectedCategory,
-      enddate: this.enddate || this.getDefaultEndDate()
-    });
+    const createdSurvey = await this.supabase.createSurvey({ name: this.name, description: this.description, category: this.selectedCategory, enddate: this.enddate || this.getDefaultEndDate()});
     if (!createdSurvey) return;
     await this.supabase.createQuestions(createdSurvey.id, this.questionForms);
     this.createdSurveyId = createdSurvey.id;
     this.showPublishedOverlay.set(true);
+    setTimeout(() => {
+      this.showPublishedOverlay.set(false);
+      document.body.style.overflow = '';
+      this.goToSurvey();
+    }, 3000);
     document.body.style.overflow = 'hidden';
   }
 

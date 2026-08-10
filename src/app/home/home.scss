@@ -1,7 +1,7 @@
 main {
     min-height: 100vh;
     background-color: rgba(53, 39, 58, 1);
-    padding-bottom: 16px;
+    padding-bottom: 212px;
     display: flex;
     justify-content: center;
     box-sizing: border-box;
@@ -432,7 +432,7 @@ p {
 
         img {
             width: 280px;
-            aspect-ratio: 1;
+            height: auto;
             justify-self: center;
         }
     }
