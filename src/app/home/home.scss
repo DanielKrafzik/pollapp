@@ -1,9 +1,10 @@
 main {
     min-height: 100vh;
     background-color: rgba(53, 39, 58, 1);
-    padding-bottom: 120px;
+    padding-bottom: 16px;
     display: flex;
     justify-content: center;
+    box-sizing: border-box;
 }
 
 .margin-l {
@@ -21,8 +22,8 @@ main {
 .up-section {
     display: flex;
     flex-direction: column;
-    gap: 90px;
-    margin-top: 92px;
+    gap: 54px;
+    margin-top: 64px;
 }
 
 .new-survey-div {

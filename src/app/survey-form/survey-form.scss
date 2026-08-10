@@ -309,11 +309,34 @@ header {
     align-self: flex-start;
 }
 
-.mobile {
+.mobile,
+.mobile-logo {
     display: none;
 }
 
 @media (max-width: 1290px) {
+    header {
+        flex-direction: column;
+    }
+
+    .header-content {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    h1 {
+        align-self: flex-start;
+    }
+
+    .desktop {
+        display: none;
+    }
+
+    .mobile-logo {
+        display: block;
+    }
+
     .logo {
         margin-top: 54px;
         padding-left: 16px;
@@ -435,7 +458,7 @@ header {
     h1 {
         font-size: 56px;
         font-weight: 400;
-        width: 294px;
+        width: 289px;
     }
 
     main {
