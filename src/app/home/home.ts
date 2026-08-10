@@ -3,10 +3,11 @@ import { Supabase } from '../supabase';
 import { NgFor, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
+import { SurveyForm } from '../survey-form/survey-form';
 
 @Component({
   selector: 'app-home',
-  imports: [NgFor, NgClass, FormsModule, RouterLink],
+  imports: [NgFor, NgClass, FormsModule, RouterLink, SurveyForm],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
@@ -16,6 +17,7 @@ export class Home {
   showCategories = false;
   dropdownArrow = 'assets/imgs/arrow_drop_down_down.png';
   exampleImg = 'assets/imgs/example2.png';
+  showSurveyForm = false;
 
   categories = [
     'Team Activities',
@@ -142,5 +144,15 @@ export class Home {
   getEndingSoonSurveys() {
     const today = new Date();
     return [...this.supabase.surveys()].filter(survey => survey.enddate && new Date(survey.enddate) >= today).sort((a, b) => new Date(a.enddate).getTime() - new Date(b.enddate).getTime()).slice(0, 3);
+  }
+
+  openSurveyForm() {
+    this.showSurveyForm = true;
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeSurveyForm() {
+    this.showSurveyForm = false;
+    document.body.style.overflow = '';
   }
 }

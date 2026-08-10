@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, EventEmitter, Output } from '@angular/core';
 import { Supabase } from '../supabase';
 import { NgFor, NgClass, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
@@ -47,6 +47,8 @@ export class SurveyForm {
   minDate = new Date().toISOString().split('T')[0];
   createdSurveyId: number | null = null;
   showPublishedOverlay = signal(false);
+
+  @Output() closeForm = new EventEmitter<void>();
 
   constructor(public supabase: Supabase, private route: ActivatedRoute, private router: Router) {}
 
@@ -207,5 +209,9 @@ export class SurveyForm {
     if (this.enddate && this.enddate < this.minDate) {
       this.enddate = this.getDefaultEndDate();;
     }
+  }
+
+  closeSurveyForm() {
+    this.closeForm.emit();
   }
 }

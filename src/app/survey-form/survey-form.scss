@@ -1,3 +1,12 @@
+:host {
+  display: block;
+  position: relative;
+
+  width: 100%;
+  max-width: 1200px;
+
+  z-index: 10000;
+}
 
 main {
     background-color: rgba(53,39,58,1);

@@ -260,9 +260,24 @@ section {
     }
 }
 
-
 .mobile {
     display: none;
+}
+
+.survey-form-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+
+  overflow-y: auto;
+
+  background-color: white;
+  padding: 32px 16px;
+  box-sizing: border-box;
 }
 
 @media (max-width: 1200px) {

@@ -5,10 +5,11 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink, Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { signal } from '@angular/core';
+import { SurveyForm } from '../survey-form/survey-form';
 
 @Component({
   selector: 'app-survey-view',
-  imports: [NgFor, NgClass, CommonModule, FormsModule, RouterLink],
+  imports: [NgFor, NgClass, CommonModule, FormsModule, RouterLink, SurveyForm],
   templateUrl: './survey-view.html',
   styleUrl: './survey-view.scss',
 })
@@ -18,6 +19,7 @@ export class SurveyView {
   selectedAnswers: { [questionId: number]: string[] } = {};
   formattedEndDate: string = '';
   showResults = true;
+  showSurveyForm = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -106,5 +108,15 @@ export class SurveyView {
  */
   toggleResults() {
     this.showResults = !this.showResults;
+  }
+
+  openSurveyForm() {
+    this.showSurveyForm = true;
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeSurveyForm() {
+    this.showSurveyForm = false;
+    document.body.style.overflow = '';
   }
 }
