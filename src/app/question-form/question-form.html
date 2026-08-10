@@ -6,7 +6,12 @@
             <img src="assets/imgs/Bin_hover.png" class="bin-hover" alt="">
         </button>
     </div>
-    <input type="text" class="question-input" [(ngModel)]="question.question" minLength="3" maxlength="40" >
+    <input type="text" class="question-input" [(ngModel)]="question.question" minLength="3" maxlength="40" (blur)="validateQuestion()" (input)="question.error = false">
+    @if (question.error) {
+    <p class="error-text">
+        Please enter at least 3 characters.
+    </p>
+    }
     <div class="answers-header">
         <h2 class="answers-title">Answers</h2>
         <div class="answers-checkbox">
@@ -19,7 +24,7 @@
             <div class="answer desktop">
                 <h2>{{ answer.letter }}.</h2>
                 <input
-                    type="text" [(ngModel)]="answer.text" minLength="1" maxlength="30">
+                    type="text" [(ngModel)]="answer.text" minLength="1" maxlength="30" (blur)="validateAnswer(answer)" (input)="answer.error = false">
                 <button (click)="removeAnswer($index)" class="delete-btn">
                     <img src="assets/imgs/Bin.png" class="bin-default" alt=""><img src="assets/imgs/Bin_hover.png" class="bin-hover" alt="">
                 </button>
@@ -32,8 +37,13 @@
                     </button>
                 </div>                
                 <input
-                    type="text" [(ngModel)]="answer.text" minLength="1" maxlength="30">                
+                    type="text" [(ngModel)]="answer.text" minLength="1" maxlength="30" (blur)="validateAnswer(answer)" (input)="answer.error = false">                
             </div>
+            @if (answer.error) {
+            <p class="error-text">
+                Please enter an answer.
+            </p>
+            }
         }
         <button class="add-answer" (click)="addAnswer()" [disabled]="question.answers.length === 6">Add answer <img src="assets/imgs/add_circle_white.png" alt=""></button>
     </div>

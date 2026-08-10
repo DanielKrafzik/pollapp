@@ -323,6 +323,10 @@ header {
     display: none;
 }
 
+.error-text {
+    color: red;
+}
+
 @media (max-width: 1290px) {
     header {
         flex-direction: column;

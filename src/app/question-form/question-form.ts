@@ -15,6 +15,8 @@ export class QuestionForm {
   @Input() index = 0;
   @Output() deleteQuestion = new EventEmitter<number>();
 
+  questionError = false;
+
   /**
  * Emits the index of the current question to notify the parent component
  * that the question should be deleted.
@@ -35,7 +37,8 @@ export class QuestionForm {
     }
     this.question.answers.push({
       letter: this.letters[this.question.answers.length],
-      text: ''
+      text: '',
+      error: false
     });
   }
 
@@ -57,5 +60,15 @@ export class QuestionForm {
     this.question.answers.forEach((answer: any, i: number) => {
       answer.letter = this.letters[i];
     });
+  }
+
+  validateQuestion() {
+    this.question.error =
+      !this.question.question.trim() ||
+      this.question.question.trim().length < 3;
+  }
+
+  validateAnswer(answer: any) {
+    answer.error = !answer.text.trim();
   }
 }

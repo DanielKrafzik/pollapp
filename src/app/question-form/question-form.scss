@@ -199,6 +199,10 @@ input[type="checkbox"] {
     display: none;
 }
 
+.error-text {
+    color: red;
+}
+
 @media (max-width: 1290px) {
     .mobile {
         display: block;

@@ -26,9 +26,10 @@ export class SurveyForm {
       id: 1,
       question: '',
       multiple_answers: false,
+      error: false,
       answers: [
-        {letter: 'A', text: ""},
-        {letter: 'B', text: ""}
+        {letter: 'A', text: "", error: false},
+        {letter: 'B', text: "", error: false}
       ]
     }
   ];
@@ -42,6 +43,8 @@ export class SurveyForm {
   ];
 
   name = '';
+  nameError = false;
+  categoryError = false;
   description = '';
   enddate = '';
   minDate = new Date().toISOString().split('T')[0];
@@ -62,9 +65,10 @@ export class SurveyForm {
       id: this.questionForms.length + 1,
       question: '',
       multiple_answers: false,
+      error: false,
       answers: [
-        { letter: 'A', text: '' },
-        { letter: 'B', text: '' }
+        { letter: 'A', text: '', error: false },
+        { letter: 'B', text: '', error: false }
       ]
     });
   }
@@ -143,6 +147,7 @@ export class SurveyForm {
  * is disabled while the overlay is open.
  */
   async publishSurvey() {
+    this.validateAllFields();
     if (!this.canPublish()) return;
     const createdSurvey = await this.supabase.createSurvey({
       name: this.name,
@@ -208,5 +213,20 @@ export class SurveyForm {
 
   closeSurveyForm() {
     this.closeForm.emit();
+  }
+
+  validateName() {
+    this.nameError = this.name.trim().length < 3;
+  }
+
+  validateAllFields() {
+    this.nameError = !this.name.trim() || this.name.trim().length < 3;
+    this.categoryError = !this.selectedCategory.trim();
+    for (const question of this.questionForms) {
+      question.error = !question.question.trim() || question.question.trim().length < 3;
+      for (const answer of question.answers) {
+        answer.error = !answer.text.trim();
+      }
+    }
   }
 }

@@ -28,11 +28,16 @@
                             </button>
                         </div>                        
                         <div class="form-input">
-                            <input type="text" placeholder="Enter survey name" class="name-input" [(ngModel)]="name" maxlength="50" minlength="3">
+                            <input type="text" placeholder="Enter survey name" class="name-input" [(ngModel)]="name" maxlength="50" minlength="3" (blur)="validateName()" (input)="nameError =  false">
                             <button class="delete-btn" (click)="clearField('name')" (mouseenter)="binPath1 = 'assets/imgs/Bin_hover.png'" (mouseleave)="binPath1 = 'assets/imgs/Bin.png'">
                                 <img src="{{ binPath1 }}" alt="">
                             </button>
                         </div>
+                            @if (nameError) {
+                            <p class="error-text">
+                                Please enter at least 3 characters.
+                            </p>
+                            }
                     </div>
                     <div class="date-category">
                         <div class="date-div">
@@ -64,6 +69,11 @@
                                 </div>
                             }
                             <p class="selected-category">{{ selectedCategory }}</p>
+                            @if (categoryError) {
+                            <p class="error-text">
+                                Please select a category.
+                            </p>
+                            }
                         </div>
                     </div>                  
                 </div>
@@ -93,7 +103,7 @@
             </div>
         </div>
     </section>
-    <button class="publish-btn" (click)="publishSurvey()" [disabled]="!canPublish()">
+    <button class="publish-btn" (click)="publishSurvey()">
         Publish
         <img src="assets/imgs/check.png" alt="">
     </button>
