@@ -146,11 +146,17 @@ export class Home {
     return [...this.supabase.surveys()].filter(survey => survey.enddate && new Date(survey.enddate) >= today).sort((a, b) => new Date(a.enddate).getTime() - new Date(b.enddate).getTime()).slice(0, 3);
   }
 
+  /**
+ * Opens the survey form overlay and disables page scrolling.
+ */
   openSurveyForm() {
     this.showSurveyForm = true;
     document.body.style.overflow = 'hidden';
   }
 
+  /**
+ * Closes the survey form overlay and restores page scrolling.
+ */
   closeSurveyForm() {
     this.showSurveyForm = false;
     document.body.style.overflow = '';

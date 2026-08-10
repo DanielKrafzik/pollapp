@@ -62,12 +62,22 @@ export class QuestionForm {
     });
   }
 
+  /**
+ * Validates the current question and sets its error state
+ * if it is empty or contains fewer than three characters.
+ */
   validateQuestion() {
     this.question.error =
       !this.question.question.trim() ||
       this.question.question.trim().length < 3;
   }
 
+  /**
+ * Validates an answer and sets its error state
+ * if the answer is empty.
+ *
+ * @param answer The answer object to validate.
+ */
   validateAnswer(answer: any) {
     answer.error = !answer.text.trim();
   }

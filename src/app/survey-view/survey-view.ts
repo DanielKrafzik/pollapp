@@ -116,45 +116,65 @@ export class SurveyView {
     this.showResults = !this.showResults;
   }
 
+  /**
+ * Opens the survey form overlay and disables page scrolling.
+ */
   openSurveyForm() {
     this.showSurveyForm = true;
     document.body.style.overflow = 'hidden';
   }
 
+  /**
+ * Closes the survey form overlay and restores page scrolling.
+ */
   closeSurveyForm() {
     this.showSurveyForm = false;
     document.body.style.overflow = '';
   }
 
+  /**
+ * Returns the vote count for a specific answer, including
+ * the user's currently selected answer as a preview vote.
+ *
+ * @param question The question containing the stored vote counts.
+ * @param answer The answer option to retrieve the vote count for.
+ * @returns The vote count including the local preview vote.
+ */
   getPreviewCount(
     question: any,
     answer: 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
   ): number {
     const baseCount = question[`${answer}_count`] ?? 0;
-
-    const isSelected =
-      this.selectedAnswers[question.id]?.includes(answer);
-
+    const isSelected = this.selectedAnswers[question.id]?.includes(answer);
     return baseCount + (isSelected ? 1 : 0);
   }
 
+  /**
+ * Calculates the total number of votes for a question,
+ * including the user's currently selected answers.
+ *
+ * @param question The question to calculate the total vote count for.
+ * @returns The total number of stored and preview votes.
+ */
   getPreviewTotal(question: any): number {
-    const selectedCount =
-      this.selectedAnswers[question.id]?.length ?? 0;
-
+    const selectedCount = this.selectedAnswers[question.id]?.length ?? 0;
     return question.totalVotes + selectedCount;
   }
 
+  /**
+ * Calculates the percentage of votes for a specific answer,
+ * including the user's current selection as a preview vote.
+ *
+ * @param question The question containing the vote data.
+ * @param answer The answer option to calculate the percentage for.
+ * @returns The preview percentage rounded to the nearest whole number.
+ */
   getPreviewPercentage(
     question: any,
     answer: 'A' | 'B' | 'C' | 'D' | 'E' | 'F'
-  ): number {
-    const total = this.getPreviewTotal(question);
-
-    if (total === 0) return 0;
-
-    const count = this.getPreviewCount(question, answer);
-
-    return Math.round((count / total) * 100);
-}
+    ): number {const total = this.getPreviewTotal(question);
+      if (total === 0) return 0;
+      const count = this.getPreviewCount(question, answer);
+      return Math.round((count / total) * 100);
+  }
 }

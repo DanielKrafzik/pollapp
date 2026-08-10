@@ -211,14 +211,26 @@ export class SurveyForm {
     }
   }
 
+  /**
+ * Closes the survey form overlay and restores page scrolling.
+ */
   closeSurveyForm() {
     this.closeForm.emit();
   }
 
+  /**
+ * Validates the survey name and sets the error state
+ * if it contains fewer than three characters.
+ */
   validateName() {
     this.nameError = this.name.trim().length < 3;
   }
 
+  /**
+ * Validates all required fields of the survey form.
+ * Checks the survey name, category, questions, and answers
+ * and sets their corresponding error states.
+ */
   validateAllFields() {
     this.nameError = !this.name.trim() || this.name.trim().length < 3;
     this.categoryError = !this.selectedCategory.trim();
